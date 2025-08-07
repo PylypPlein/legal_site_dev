@@ -1,0 +1,378 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!-- HERO SECTION -->
+<section class="text-center py-5 border-bottom position-relative"
+         style="background-image: url('https://www.theladders.com/wp-content/uploads/sales-meeting-191002.jpg'); background-size: cover;
+           background-position: center 7%; /* ниже фокус, видно низ фото */
+           background-repeat: no-repeat;
+           min-height: 420px;">
+
+  <!-- затемняющий оверлей -->
+  <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5);"></div>
+
+  <div class="position-relative" style="z-index: 1;">
+    <img src="https://companieslogo.com/img/orig/DKNG-e9ded183.png?t=1660587881"
+     class="rounded-circle shadow mb-3"
+     alt="Logo"
+     style="width: 100px; height: 100px; object-fit: cover;">
+
+    {% if LANGUAGE_CODE == 'pl' %}
+      <h1 class="display-5 fw-bold text-white">Visa Service</h1>
+      <p class="lead text-light">Prawnik ds. migracji i prawa gospodarczego w Polsce</p>
+      <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
+        Umów się na konsultację
+      </button>
+    {% elif LANGUAGE_CODE == 'en' %}
+      <h1 class="display-5 fw-bold text-white">Visa Service</h1>
+      <p class="lead text-light">Immigration and business law attorney in Poland</p>
+      <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
+        Book a consultation
+      </button>
+    {% elif LANGUAGE_CODE == 'ru' %}
+      <h1 class="display-5 fw-bold text-white">Visa Service</h1>
+      <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
+      <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
+        Записаться на консультацию
+      </button>
+    {% elif LANGUAGE_CODE == 'uk' %}
+      <h1 class="display-5 fw-bold text-white">Visa Service</h1>
+      <p class="lead text-light">Юрист з міграційного та бізнес-права в Польщі</p>
+      <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
+        Записатися на консультацію
+      </button>
+    {% else %}
+      <h1 class="display-5 fw-bold text-white">Легалайз Пример</h1>
+      <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
+      <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
+        Записаться на консультацию
+      </button>
+    {% endif %}
+
+
+  </div>
+</section>
+
+
+
+<!-- ABOUT -->
+<!-- ABOUT -->
+{% if LANGUAGE_CODE == 'pl' %}
+  <section class="container py-5">
+    <h2 class="mb-4">O mnie</h2>
+    <p class="fs-5">
+      Od 2019 roku świadczę pomoc prawną w Polsce. Specjalizuję się w legalizacji cudzoziemców, zakładaniu i obsłudze firm, a także w uzyskiwaniu pozwoleń na pracę i pobyt. Gwarantuję indywidualne podejście, precyzję i zgodność z obowiązującym prawem.
+    </p>
+  </section>
+{% elif LANGUAGE_CODE == 'en' %}
+  <section class="container py-5">
+    <h2 class="mb-4">About Me</h2>
+    <p class="fs-5">
+      I have been providing legal assistance in Poland since 2019. I specialize in the legalization of foreigners, business establishment and support, as well as work and residence permits. I guarantee a personalized approach, accuracy, and compliance with all legal regulations.
+    </p>
+  </section>
+{% elif LANGUAGE_CODE == 'ru' %}
+  <section class="container py-5">
+    <h2 class="mb-4">Обо мне</h2>
+    <p class="fs-5">
+      Я предоставляю юридическую помощь в Польше с 2019 года. Специализируюсь на легализации иностранцев, открытии и сопровождении бизнеса, а также разрешениях на работу и ВНЖ. Гарантирую персональный подход, точность и соблюдение всех правовых норм.
+    </p>
+  </section>
+{% elif LANGUAGE_CODE == 'uk' %}
+  <section class="container py-5">
+    <h2 class="mb-4">Про мене</h2>
+    <p class="fs-5">
+      Я надаю юридичну допомогу в Польщі з 2019 року. Спеціалізуюся на легалізації іноземців, відкритті та супроводі бізнесу, а також на отриманні дозволів на роботу та проживання. Гарантую індивідуальний підхід, точність та дотримання всіх правових норм.
+    </p>
+  </section>
+{% else %}
+  <section class="container py-5">
+    <h2 class="mb-4">Обо мне</h2>
+    <p class="fs-5">
+      Я предоставляю юридическую помощь в Польше с 2019 года. Специализируюсь на легализации иностранцев, открытии и сопровождении бизнеса, а также разрешениях на работу и ВНЖ. Гарантирую персональный подход, точность и соблюдение всех правовых норм.
+    </p>
+  </section>
+{% endif %}
+
+
+
+<section class="bg-light py-5">
+  <div class="container">
+    <h2 class="mb-4 text-center">{% trans "Услуги" %}</h2>
+    <div class="row g-4">
+      {% for service in services %}
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            {{ LANGUAGE_CODE }}
+            <h5 class="card-title">
+              {% if LANGUAGE_CODE == 'pl' %}
+                {{ service.name_pl }}
+              {% elif LANGUAGE_CODE == 'en' %}
+                {{ service.name_en }}
+              {% elif LANGUAGE_CODE == 'ru' %}
+                {{ service.name_ru }}
+              {% elif LANGUAGE_CODE == 'uk' %}
+                {{ service.name_ua }}
+              {% else %}
+                {{ service.name_en }}
+              {% endif %}
+            </h5>
+            <p class="card-text">
+              {% if LANGUAGE_CODE == 'pl' %}
+                {{ service.description_pl }}
+              {% elif LANGUAGE_CODE == 'en' %}
+                {{ service.description_en }}
+              {% elif LANGUAGE_CODE == 'ru' %}
+                {{ service.description_ru }}
+              {% elif LANGUAGE_CODE == 'uk' %}
+                {{ service.description_ua }}
+              {% else %}
+                {{ service.description_en }}
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>{% trans "Услуги пока не добавлены." %}</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+
+<!-- WHY ME -->
+{% if LANGUAGE_CODE == 'pl' %}
+<section class="container py-5">
+  <h2 class="mb-4 text-center">Dlaczego warto mnie wybrać</h2>
+  <div class="row text-center">
+    <div class="col-md-3">
+      <i class="bi bi-award fs-1 text-primary"></i>
+      <h5 class="mt-3">Doświadczenie od 2019</h5>
+      <p>Ponad 5 lat praktyki prawnej w Polsce</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-shield-check fs-1 text-success"></i>
+      <h5 class="mt-3">Niezawodność</h5>
+      <p>Pracuję na podstawie umowy, udzielam gwarancji</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-clock-history fs-1 text-warning"></i>
+      <h5 class="mt-3">Skuteczność</h5>
+      <p>Szybkie składanie wniosków i obsługa</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-translate fs-1 text-danger"></i>
+      <h5 class="mt-3">Rosyjski / Polski</h5>
+      <p>Komunikacja bez barier językowych</p>
+    </div>
+  </div>
+</section>
+{% elif LANGUAGE_CODE == 'en' %}
+<section class="container py-5">
+  <h2 class="mb-4 text-center">Why Choose Me</h2>
+  <div class="row text-center">
+    <div class="col-md-3">
+      <i class="bi bi-award fs-1 text-primary"></i>
+      <h5 class="mt-3">Experience Since 2019</h5>
+      <p>Over 5 years of legal practice in Poland</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-shield-check fs-1 text-success"></i>
+      <h5 class="mt-3">Reliability</h5>
+      <p>I work under contract and provide guarantees</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-clock-history fs-1 text-warning"></i>
+      <h5 class="mt-3">Efficiency</h5>
+      <p>Prompt submission and full support</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-translate fs-1 text-danger"></i>
+      <h5 class="mt-3">Russian / Polish</h5>
+      <p>Communication without language barriers</p>
+    </div>
+  </div>
+</section>
+{% elif LANGUAGE_CODE == 'uk' %}
+<section class="container py-5">
+  <h2 class="mb-4 text-center">Чому обирають мене</h2>
+  <div class="row text-center">
+    <div class="col-md-3">
+      <i class="bi bi-award fs-1 text-primary"></i>
+      <h5 class="mt-3">Досвід з 2019 року</h5>
+      <p>Понад 5 років юридичної практики в Польщі</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-shield-check fs-1 text-success"></i>
+      <h5 class="mt-3">Надійність</h5>
+      <p>Працюю за договором, надаю гарантії</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-clock-history fs-1 text-warning"></i>
+      <h5 class="mt-3">Ефективність</h5>
+      <p>Оперативна подача та супровід</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-translate fs-1 text-danger"></i>
+      <h5 class="mt-3">Російська / Польська</h5>
+      <p>Спілкування без мовного бар’єру</p>
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="container py-5">
+  <h2 class="mb-4 text-center">Почему выбирают меня</h2>
+  <div class="row text-center">
+    <div class="col-md-3">
+      <i class="bi bi-award fs-1 text-primary"></i>
+      <h5 class="mt-3">Опыт с 2019</h5>
+      <p>Более 5 лет юридической практики в Польше</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-shield-check fs-1 text-success"></i>
+      <h5 class="mt-3">Надёжность</h5>
+      <p>Работаю по договору, предоставляю гарантии</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-clock-history fs-1 text-warning"></i>
+      <h5 class="mt-3">Эффективность</h5>
+      <p>Оперативная подача и сопровождение</p>
+    </div>
+    <div class="col-md-3">
+      <i class="bi bi-translate fs-1 text-danger"></i>
+      <h5 class="mt-3">Русский / Польский</h5>
+      <p>Общение без языкового барьера</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+
+<!-- CONTACT -->
+<section class="bg-dark text-white py-5">
+    <!-- Google Map -->
+  <div class="mt-5">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2442.5451878311937!2d17.022081815739315!3d51.11831737957124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fe9c062eb6e8f%3A0x204cd554169bdb71!2sPlac%20Solidarno%C5%9Bci%201%2C%2051-516%20Wroc%C5%82aw%2C%20Poland!5e0!3m2!1sen!2spl!4v1655193872665!5m2!1sen!2spl"
+      width="100%"
+      height="400"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <div class="container-fluid px-5">
+    <h2 class="mb-5 text-center">Контакты</h2>
+    <div class="row text-center justify-content-center">
+      <div class="col-12 col-md-4 mb-4 mb-md-0">
+        <i class="bi bi-geo-alt-fill fs-3"></i>
+        <p class="mt-2">Wrocław, Plac Solidarności 1‑3‑5/510</p>
+      </div>
+      <div class="col-12 col-md-4 mb-4 mb-md-0">
+        <i class="bi bi-telephone-fill fs-3"></i>
+        <p class="mt-2">+48 884 703 068</p>
+      </div>
+      <div class="col-12 col-md-4">
+        <i class="bi bi-envelope-fill fs-3"></i>
+        <p class="mt-2">biuro@workpermit.support</p>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel">
+            {% if LANGUAGE_CODE == 'pl' %}
+              Umów się na konsultację
+            {% elif LANGUAGE_CODE == 'en' %}
+              Book a Consultation
+            {% elif LANGUAGE_CODE == 'ru' %}
+              Запись на консультацию
+            {% elif LANGUAGE_CODE == 'uk' %}
+              Запис на консультацію
+            {% else %}
+              Запись на консультацию
+            {% endif %}
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% if LANGUAGE_CODE == 'pl' %}Zamknij{% elif LANGUAGE_CODE == 'en' %}Close{% elif LANGUAGE_CODE == 'ru' %}Закрыть{% elif LANGUAGE_CODE == 'uk' %}Закрити{% else %}Закрыть{% endif %}"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">
+              {% if LANGUAGE_CODE == 'pl' %}Imię{% elif LANGUAGE_CODE == 'en' %}Name{% elif LANGUAGE_CODE == 'ru' %}Имя{% elif LANGUAGE_CODE == 'uk' %}Ім’я{% else %}Имя{% endif %}
+            </label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">
+              {% if LANGUAGE_CODE == 'pl' %}Numer telefonu{% elif LANGUAGE_CODE == 'en' %}Phone Number{% elif LANGUAGE_CODE == 'ru' %}Номер телефона{% elif LANGUAGE_CODE == 'uk' %}Номер телефону{% else %}Номер телефона{% endif %}
+            </label>
+            <input type="tel" class="form-control" id="phone" name="phone" required pattern="\+?[0-9\s\-]{7,15}" placeholder="{% if LANGUAGE_CODE == 'pl' or LANGUAGE_CODE == 'uk' or LANGUAGE_CODE == 'ru' %}+48 XXX XXX XXX{% elif LANGUAGE_CODE == 'en' %}+48 XXX XXX XXX{% else %}+48 XXX XXX XXX{% endif %}">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">
+              {% if LANGUAGE_CODE == 'pl' %}Adres e-mail{% elif LANGUAGE_CODE == 'en' %}Email{% elif LANGUAGE_CODE == 'ru' %}Электронная почта{% elif LANGUAGE_CODE == 'uk' %}Електронна пошта{% else %}Электронная почта{% endif %}
+            </label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="service" class="form-label">
+              {% if LANGUAGE_CODE == 'pl' %}Wybierz usługę{% elif LANGUAGE_CODE == 'en' %}Select a service{% elif LANGUAGE_CODE == 'ru' %}Выберите услугу{% elif LANGUAGE_CODE == 'uk' %}Оберіть послугу{% else %}Выберите услугу{% endif %}
+            </label>
+            <select class="form-select" id="service" name="service" required>
+              <option value="" disabled selected>
+                {% if LANGUAGE_CODE == 'pl' %}Wybierz usługę{% elif LANGUAGE_CODE == 'en' %}Select a service{% elif LANGUAGE_CODE == 'ru' %}Выберите услугу{% elif LANGUAGE_CODE == 'uk' %}Оберіть послугу{% else %}Выберите услугу{% endif %}
+              </option>
+              {% for service in services %}
+                <option value="{{ service.id }}" title="{{ service.description }}">
+                  {% if LANGUAGE_CODE == 'pl' %}
+                    {{ service.name_pl }}
+                  {% elif LANGUAGE_CODE == 'en' %}
+                    {{ service.name_en }}
+                  {% elif LANGUAGE_CODE == 'ru' %}
+                    {{ service.name_ru }}
+                  {% elif LANGUAGE_CODE == 'uk' %}
+                    {{ service.name_uk }}
+                  {% else %}
+                    {{ service.name }}
+                  {% endif %}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">
+              {% if LANGUAGE_CODE == 'pl' %}Wiadomość{% elif LANGUAGE_CODE == 'en' %}Message{% elif LANGUAGE_CODE == 'ru' %}Сообщение{% elif LANGUAGE_CODE == 'uk' %}Повідомлення{% else %}Сообщение{% endif %}
+            </label>
+            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {% if LANGUAGE_CODE == 'pl' %}Anuluj{% elif LANGUAGE_CODE == 'en' %}Cancel{% elif LANGUAGE_CODE == 'ru' %}Отмена{% elif LANGUAGE_CODE == 'uk' %}Скасувати{% else %}Отмена{% endif %}
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {% if LANGUAGE_CODE == 'pl' %}Wyślij{% elif LANGUAGE_CODE == 'en' %}Submit{% elif LANGUAGE_CODE == 'ru' %}Отправить{% elif LANGUAGE_CODE == 'uk' %}Надіслати{% else %}Отправить{% endif %}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

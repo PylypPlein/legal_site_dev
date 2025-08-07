@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    {% if LANGUAGE_CODE == 'pl' %}Usługi prawnika{% elif LANGUAGE_CODE == 'en' %}Lawyer service
+    {% elif LANGUAGE_CODE == 'ru' %}Юридические услуги{% elif LANGUAGE_CODE == 'uk' %}Юридичні послуги
+    {% else %}Lawyer service{% endif %}
+  </title>
+
+  <!-- Bootstrap CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg: #0C0C0C;
+      --color-text-gold: #C8B174;
+      --color-text-light: #D1D1D1;
+      --color-white: #F4F4F4;
+      --color-button: #C8B174;
+      --color-button-hover: #E1C88A;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text-light);
+    }
+
+    .text-gold {
+      color: var(--color-text-gold) !important;
+    }
+
+    .btn-primary {
+      background-color: var(--color-button);
+      border: none;
+      color: var(--color-bg);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-button-hover);
+    }
+
+    .offcanvas,
+    .navbar,
+    .footer {
+      background-color: var(--color-bg) !important;
+    }
+
+    .offcanvas .nav-link,
+    .offcanvas .dropdown-item {
+      color: var(--color-text-gold);
+    }
+
+    .offcanvas .nav-link:hover,
+    .offcanvas .dropdown-item:hover {
+      color: var(--color-button-hover);
+    }
+
+    .logo-footer img {
+      transition: transform 0.3s ease;
+    }
+
+    .logo-footer img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-dark shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center">
+    {% if LANGUAGE_CODE == 'pl' %}<a class="navbar-brand fw-bold" href="/">Strona główna</a>
+    {% elif LANGUAGE_CODE == 'en' %}<a class="navbar-brand fw-bold" href="/">Main</a>
+    {% elif LANGUAGE_CODE == 'ru' %}<a class="navbar-brand fw-bold" href="/">Главная</a>
+    {% elif LANGUAGE_CODE == 'uk' %}<a class="navbar-brand fw-bold" href="/">Головна</a>
+    {% else %}<a class="navbar-brand fw-bold" href="/">Main</a>{% endif %}
+
+    <div class="d-flex align-items-center gap-3">
+      <a href="https://www.instagram.com" target="_blank" class="text-white text-decoration-none">
+        <i class="bi bi-instagram" style="font-size: 1.5rem;"></i>
+      </a>
+      <a href="https://t.me/yourchannel" target="_blank" class="text-white text-decoration-none">
+        <i class="bi bi-telegram" style="font-size: 1.5rem;"></i>
+      </a>
+      <a href="https://www.facebook.com" target="_blank" class="text-white text-decoration-none">
+        <i class="bi bi-facebook" style="font-size: 1.5rem;"></i>
+      </a>
+
+      <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+        <i class="bi bi-list" style="font-size: 1.5rem;"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Offcanvas -->
+<div class="offcanvas offcanvas-start text-white" tabindex="-1" id="offcanvasMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasMenuLabel">
+      {% if LANGUAGE_CODE == 'pl' %}Menu{% elif LANGUAGE_CODE == 'ru' or LANGUAGE_CODE == 'uk' %}Меню{% else %}Menu{% endif %}
+    </h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column justify-content-between h-100">
+    <div>
+      <ul class="navbar-nav">
+        {% if LANGUAGE_CODE == 'pl' %}
+          <li class="nav-item"><a class="nav-link text-gold" href="/about/">O nas</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Kontakt</a></li>
+        {% elif LANGUAGE_CODE == 'en' %}
+          <li class="nav-item"><a class="nav-link text-gold" href="/about/">About us</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Contacts</a></li>
+        {% elif LANGUAGE_CODE == 'ru' %}
+          <li class="nav-item"><a class="nav-link text-gold" href="/about/">О нас</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Контакты</a></li>
+        {% elif LANGUAGE_CODE == 'uk' %}
+          <li class="nav-item"><a class="nav-link text-gold" href="/about/">Про нас</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Контакти</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link text-gold" href="/">Main</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/about/">About us</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Contacts</a></li>
+        {% endif %}
+      </ul>
+      <hr class="bg-light">
+      <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.path }}">
+        <div class="dropdown">
+          <button class="btn btn-outline-light dropdown-toggle w-100 text-start" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-globe"></i>
+            {% if LANGUAGE_CODE == 'pl' %}PL{% elif LANGUAGE_CODE == 'en' %}EN{% elif LANGUAGE_CODE == 'uk' %}UA{% else %}RU{% endif %}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><button class="dropdown-item" type="submit" name="language" value="pl">🇵🇱 Polski</button></li>
+            <li><button class="dropdown-item" type="submit" name="language" value="en">🇬🇧 English</button></li>
+            <li><button class="dropdown-item" type="submit" name="language" value="uk">🇺🇦 Українська</button></li>
+            <li><button class="dropdown-item" type="submit" name="language" value="ru">🇷🇺 Русский</button></li>
+          </ul>
+        </div>
+      </form>
+    </div>
+    <div class="text-center logo-footer mt-5">
+      <a href="/">
+        <img src="https://companieslogo.com/img/orig/DKNG-e9ded183.png?t=1660587881" alt="Visa Project Logo" style="max-width: 120px;">
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Контент -->
+
+  {% block content %}{% endblock %}
+
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init();</script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+</html>
