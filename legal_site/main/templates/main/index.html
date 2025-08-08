@@ -1,9 +1,9 @@
 {% extends 'main/base.html' %}
 {% block content %}
-{% load i18n %}
+{% load static i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <!-- HERO SECTION -->
-<section class="text-center py-5 border-bottom position-relative"
+<section class="text-center py-5  position-relative"
          style="background-image: url('https://www.theladders.com/wp-content/uploads/sales-meeting-191002.jpg'); background-size: cover;
            background-position: center 7%; /* ниже фокус, видно низ фото */
            background-repeat: no-repeat;
@@ -13,31 +13,31 @@
   <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5);"></div>
 
   <div class="position-relative" style="z-index: 1;">
-    <img src="https://companieslogo.com/img/orig/DKNG-e9ded183.png?t=1660587881"
+    <img src="{% static 'main/logo.png' %}"
      class="rounded-circle shadow mb-3"
      alt="Logo"
      style="width: 100px; height: 100px; object-fit: cover;">
 
     {% if LANGUAGE_CODE == 'pl' %}
-      <h1 class="display-5 fw-bold text-white">Visa Service</h1>
+      <h1 class="display-5 fw-bold text-white">Visa Project</h1>
       <p class="lead text-light">Prawnik ds. migracji i prawa gospodarczego w Polsce</p>
       <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
         Umów się na konsultację
       </button>
     {% elif LANGUAGE_CODE == 'en' %}
-      <h1 class="display-5 fw-bold text-white">Visa Service</h1>
+      <h1 class="display-5 fw-bold text-white">Visa Project</h1>
       <p class="lead text-light">Immigration and business law attorney in Poland</p>
       <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
         Book a consultation
       </button>
     {% elif LANGUAGE_CODE == 'ru' %}
-      <h1 class="display-5 fw-bold text-white">Visa Service</h1>
+      <h1 class="display-5 fw-bold text-white">Visa Project</h1>
       <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
       <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
         Записаться на консультацию
       </button>
     {% elif LANGUAGE_CODE == 'uk' %}
-      <h1 class="display-5 fw-bold text-white">Visa Service</h1>
+      <h1 class="display-5 fw-bold text-white">Visa Project</h1>
       <p class="lead text-light">Юрист з міграційного та бізнес-права в Польщі</p>
       <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
         Записатися на консультацію
@@ -60,31 +60,27 @@
 <!-- ABOUT -->
 {% if LANGUAGE_CODE == 'pl' %}
   <section class="container py-5">
-    <h2 class="mb-4">O mnie</h2>
+    <h2 class="mb-4">O nas</h2>
     <p class="fs-5">
-      Od 2019 roku świadczę pomoc prawną w Polsce. Specjalizuję się w legalizacji cudzoziemców, zakładaniu i obsłudze firm, a także w uzyskiwaniu pozwoleń na pracę i pobyt. Gwarantuję indywidualne podejście, precyzję i zgodność z obowiązującym prawem.
-    </p>
+      Świadczymy pomoc prawną w Polsce od 2019 roku. Specjalizujemy się w legalizacji pobytu cudzoziemców, zakładaniu i obsłudze firm, a także w uzyskiwaniu zezwoleń na pracę oraz kart pobytu. Gwarantujemy indywidualne podejście, rzetelność i pełną zgodność z obowiązującym prawem.    </p>
   </section>
 {% elif LANGUAGE_CODE == 'en' %}
   <section class="container py-5">
-    <h2 class="mb-4">About Me</h2>
+    <h2 class="mb-4">About us</h2>
     <p class="fs-5">
-      I have been providing legal assistance in Poland since 2019. I specialize in the legalization of foreigners, business establishment and support, as well as work and residence permits. I guarantee a personalized approach, accuracy, and compliance with all legal regulations.
-    </p>
+      We have been providing legal assistance in Poland since 2019. Our expertise includes the legalization of foreigners, business registration and support, as well as obtaining work permits and residence cards. We guarantee a personalized approach, accuracy, and full compliance with legal regulations.    </p>
   </section>
 {% elif LANGUAGE_CODE == 'ru' %}
   <section class="container py-5">
-    <h2 class="mb-4">Обо мне</h2>
+    <h2 class="mb-4">О нас</h2>
     <p class="fs-5">
-      Я предоставляю юридическую помощь в Польше с 2019 года. Специализируюсь на легализации иностранцев, открытии и сопровождении бизнеса, а также разрешениях на работу и ВНЖ. Гарантирую персональный подход, точность и соблюдение всех правовых норм.
-    </p>
+      Мы предоставляем юридическую помощь в Польше с 2019 года. Специализируемся на легализации иностранцев, открытии и сопровождении бизнеса, а также получении разрешений на работу и вида на жительство. Гарантируем индивидуальный подход, точность и соблюдение всех правовых норм.    </p>
   </section>
 {% elif LANGUAGE_CODE == 'uk' %}
   <section class="container py-5">
-    <h2 class="mb-4">Про мене</h2>
+    <h2 class="mb-4">Про нас</h2>
     <p class="fs-5">
-      Я надаю юридичну допомогу в Польщі з 2019 року. Спеціалізуюся на легалізації іноземців, відкритті та супроводі бізнесу, а також на отриманні дозволів на роботу та проживання. Гарантую індивідуальний підхід, точність та дотримання всіх правових норм.
-    </p>
+      Ми надаємо юридичну допомогу в Польщі з 2019 року. Спеціалізуємося на легалізації іноземців, відкритті та супроводі бізнесу, а також отриманні дозволів на роботу та посвідки на проживання. Гарантуємо індивідуальний підхід, точність і дотримання всіх юридичних норм.    </p>
   </section>
 {% else %}
   <section class="container py-5">
@@ -96,9 +92,9 @@
 {% endif %}
 
 
-<section class="py-5" style="background-color: var(--color-bg);">
+<section class="py-5" style="background-color: white">
   <div class="container">
-    <h2 class="mb-5 text-center text-white position-relative d-inline-block" data-aos="fade-up">
+    <h2 class="mb-5 text-center position-relative d-inline-block" data-aos="fade-up" style="color: black">
       {% trans "Услуги" %}
       <span class="d-block mx-auto mt-2" style="width: 60px; height: 3px; background-color: var(--bs-warning);"></span>
     </h2>
@@ -106,7 +102,7 @@
     <div class="row g-4">
       {% for service in services %}
       <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'1' }}00">
-        <div class="card h-100 shadow-sm border-0 bg-dark text-white rounded-4">
+        <div class="card h-100 shadow-lg border-0 bg-dark text-white rounded-4">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title mb-3">
               {% if LANGUAGE_CODE == 'pl' %}
@@ -160,17 +156,17 @@
   <h2 class="mb-4 text-center" data-aos="fade-up">Dlaczego warto mnie wybrać</h2>
   <div class="row text-center">
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-      <i class="bi bi-award fs-1 text-primary"></i>
+      <i class="bi bi-award fs-1 text-danger"></i>
       <h5 class="mt-3">Doświadczenie od 2019</h5>
       <p>Ponad 5 lat praktyki prawnej w Polsce</p>
     </div>
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-      <i class="bi bi-shield-check fs-1 text-success"></i>
+      <i class="bi bi-shield-check fs-1 text-danger"></i>
       <h5 class="mt-3">Niezawodność</h5>
       <p>Pracuję na podstawie umowy, udzielam gwarancji</p>
     </div>
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-      <i class="bi bi-clock-history fs-1 text-warning"></i>
+      <i class="bi bi-clock-history fs-1 text-danger"></i>
       <h5 class="mt-3">Skuteczność</h5>
       <p>Szybkie składanie wniosków i obsługa</p>
     </div>
@@ -239,17 +235,17 @@
   <h2 class="mb-4 text-center">Почему выбирают меня</h2>
   <div class="row text-center">
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-      <i class="bi bi-award fs-1 text-primary"></i>
+      <i class="bi bi-award fs-1 text-danger"></i>
       <h5 class="mt-3">Опыт с 2019</h5>
       <p>Более 5 лет юридической практики в Польше</p>
     </div>
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-      <i class="bi bi-shield-check fs-1 text-success"></i>
+      <i class="bi bi-shield-check fs-1 text-danger"></i>
       <h5 class="mt-3">Надёжность</h5>
       <p>Работаю по договору, предоставляю гарантии</p>
     </div>
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-      <i class="bi bi-clock-history fs-1 text-warning"></i>
+      <i  class="bi bi-clock-history fs-1 text-danger"></i>
       <h5 class="mt-3">Эффективность</h5>
       <p>Оперативная подача и сопровождение</p>
     </div>
@@ -261,6 +257,46 @@
   </div>
 </section>
 {% endif %}
+
+<!-- Swiper контейнер -->
+<div class="swiper teamSwiper container py-5">
+  <div class="swiper-wrapper">
+
+    {% for employee in employees %}
+    <div class="swiper-slide">
+      <div class="card border-0 h-100 shadow-lg card-hover"
+           data-bs-toggle="modal"
+           data-bs-target="#employeeModal"
+           data-photo="{{ employee.photo.url }}"
+           data-name="{{ employee.first_name }} {{ employee.last_name }}"
+           data-position="{{ employee.position }}"
+           data-age="{{ employee.age }}"
+           data-profession="{{ employee.profession }}"
+           data-years="{{ employee.years_in_poland }}"
+           data-description="{{ employee.description }}">
+        <div class="bg-dark rounded-top overflow-hidden" style="height: 250px;">
+          <img src="{{ employee.photo.url }}" class="card-img-top" alt="{{ employee.first_name }}">
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ employee.first_name }} <strong>{{ employee.last_name }}</strong></h5>
+          <p class="text-muted">{{ employee.position }}</p>
+          <hr>
+          <p class="mb-1"><strong>Age:</strong> {{ employee.age }} years old</p>
+          <p class="mb-1"><strong>Profession:</strong> {{ employee.profession }}</p>
+          <p class="mb-1"><strong>Residence in Poland:</strong> {{ employee.years_in_poland }} years</p>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+  <!-- Кнопки навігації -->
+  <div class="swiper-button-next" style="color: var(--color-text-gold);"></div>
+  <div class="swiper-button-prev" style="color: var(--color-text-gold);"></div>
+</div>
+
 
 
 <!-- CONTACT -->
@@ -278,8 +314,8 @@
             <div class="d-flex align-items-start p-4 border-start border-4 border-warning bg-dark rounded shadow h-100">
               <i class="bi bi-geo-alt-fill fs-3 text-warning me-3"></i>
               <div>
-                <h5 class="mb-1">Wrocław</h5>
-                <p class="mb-0">Plac Solidarności 1‑3‑5/510</p>
+                <h5 class="mb-1">{{company.miasto}}</h5>
+                <p class="mb-0">{{company.adres}}</p>
               </div>
             </div>
           </div>
@@ -288,7 +324,7 @@
             <div class="d-flex align-items-start p-4 border-start border-4 border-warning bg-dark rounded shadow h-100">
               <i class="bi bi-telephone-fill fs-3 text-warning me-3"></i>
               <div>
-                <h5 class="mb-1">+48 884 703 068</h5>
+                <h5 class="mb-1">{{company.telefon_legalizacja}}</h5>
                 <p class="mb-0">{% trans "Телефон" %}</p>
               </div>
             </div>
@@ -298,7 +334,7 @@
             <div class="d-flex align-items-start p-4 border-start border-4 border-warning bg-dark rounded shadow h-100">
               <i class="bi bi-envelope-fill fs-3 text-warning me-3"></i>
               <div>
-                <h5 class="mb-1">biuro@workpermit.support</h5>
+                <h5 class="mb-1">{{company.email}}</h5>
                 <p class="mb-0">{% trans "Email" %}</p>
               </div>
             </div>
@@ -321,18 +357,41 @@
   </div>
 </section>
 
-
-
-
+<!-- Модальне вікно -->
+<div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-white text-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="employeeModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div class="col-md-5">
+            <img id="modalPhoto" src="" alt="" class="img-fluid rounded shadow">
+          </div>
+          <div class="col-md-7">
+            <p><strong>Position:</strong> <span id="modalPosition"></span></p>
+            <p><strong>Age:</strong> <span id="modalAge"></span></p>
+            <p><strong>Profession:</strong> <span id="modalProfession"></span></p>
+            <p><strong>Residence in Poland:</strong> <span id="modalYears"></span></p>
+            <hr>
+            <p id="modalDescription" class="mt-3"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content shadow-lg rounded-4 border-0">
+    <div class="modal-content border-0 rounded-4 shadow-lg bg-dark-900 text-white">
       <form method="post" action="{% url 'contact' %}">
         {% csrf_token %}
 
         <!-- Заголовок -->
-        <div class="modal-header bg-dark text-white rounded-top-4 border-bottom border-warning">
+        <div class="modal-header rounded-top-4 custom-border border-bottom bg-black">
           <h5 class="modal-title" id="contactModalLabel">
             {% if LANGUAGE_CODE == 'pl' %}
               Umów się na konsultację
@@ -352,28 +411,27 @@
         </div>
 
         <!-- Контент -->
-        <div class="modal-body py-4 px-4" style="background-color: var(--color-bg); color: var(--color-white);">
-          <div class="row g-3">
-
+        <div class="modal-body py-4 px-4">
+          <div class="row g-4">
             <div class="col-md-6">
               <label for="name" class="form-label">{% trans "Имя" %}</label>
-              <input type="text" class="form-control bg-dark text-white border-warning" id="name" name="name" required>
+              <input type="text" class="form-control text-white bg-dark-800 custom-border" id="name" name="name" required>
             </div>
 
             <div class="col-md-6">
               <label for="phone" class="form-label">{% trans "Телефон" %}</label>
-              <input type="tel" class="form-control bg-dark text-white border-warning" id="phone" name="phone"
+              <input type="tel" class="form-control text-white bg-dark-800 custom-border" id="phone" name="phone"
                 required pattern="\+?[0-9\s\-]{7,15}" placeholder="+48 XXX XXX XXX">
             </div>
 
             <div class="col-md-6">
               <label for="email" class="form-label">{% trans "Электронная почта" %}</label>
-              <input type="email" class="form-control bg-dark text-white border-warning" id="email" name="email" required>
+              <input type="email" class="form-control text-white bg-dark-800 custom-border" id="email" name="email" required>
             </div>
 
             <div class="col-md-6">
               <label for="service" class="form-label">{% trans "Выберите услугу" %}</label>
-              <select class="form-select bg-dark text-white border-warning" id="service" name="service" required>
+              <select class="form-select text-white bg-dark-800 custom-border" id="service" name="service" required>
                 <option value="" disabled selected>{% trans "Выберите услугу" %}</option>
                 {% for service in services %}
                 <option value="{{ service.id }}">
@@ -395,18 +453,18 @@
 
             <div class="col-12">
               <label for="message" class="form-label">{% trans "Сообщение" %}</label>
-              <textarea class="form-control bg-dark text-white border-warning" id="message" name="message"
+              <textarea class="form-control text-white bg-dark-800 custom-border" id="message" name="message"
                 rows="4" placeholder="..." style="resize: none;"></textarea>
             </div>
           </div>
         </div>
 
         <!-- Подвал -->
-        <div class="modal-footer bg-dark text-white rounded-bottom-4 border-top border-warning">
-          <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">
+        <div class="modal-footer rounded-bottom-4 border-top custom-border bg-black">
+          <button type="button" class="btn custom-gold-outline" data-bs-dismiss="modal">
             {% trans "Отмена" %}
           </button>
-          <button type="submit" class="btn btn-warning text-dark fw-bold">
+          <button type="submit" class="btn custom-gold fw-bold">
             {% trans "Отправить" %}
           </button>
         </div>
@@ -415,9 +473,52 @@
   </div>
 </div>
 
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+<script>
+  var swiper = new Swiper(".teamSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      576: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      992: {
+        slidesPerView: 3,
+      },
+      1200: {
+        slidesPerView: 4,
+      },
+    },
+  });
+</script>
 
+<script>
+  const employeeModal = document.getElementById('employeeModal');
+  employeeModal.addEventListener('show.bs.modal', function (event) {
+    const card = event.relatedTarget;
 
-
+    document.getElementById('employeeModalLabel').textContent = card.getAttribute('data-name');
+    document.getElementById('modalPhoto').src = card.getAttribute('data-photo');
+    document.getElementById('modalPosition').textContent = card.getAttribute('data-position');
+    document.getElementById('modalAge').textContent = card.getAttribute('data-age') + ' years old';
+    document.getElementById('modalProfession').textContent = card.getAttribute('data-profession');
+    document.getElementById('modalYears').textContent = card.getAttribute('data-years') + ' years';
+    document.getElementById('modalDescription').textContent = card.getAttribute('data-description');
+  });
+</script>
 
 {% endblock %}
