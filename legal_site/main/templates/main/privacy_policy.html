@@ -4,7 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 <div class="container">
 {% for section in sections %}
-  <h2 class="text-center">§{{ section.number }} {{ section.title }}</h2>
+  <h2 class="text-center" style="color: #A08A5D">§{{ section.number }} {{ section.title }}</h2>
   <ol>
     {% for subsection in section.subsections.all %}
         <li>{{ subsection.content|safe }}</li>

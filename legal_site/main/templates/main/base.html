@@ -51,6 +51,16 @@
       background-color: var(--color-button-hover);
     }
 
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .fade-in-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .offcanvas,
     .navbar,
     .footer {
@@ -105,6 +115,18 @@
       background-color: transparent !important;
     }
 
+    .custom-outline-btn {
+      color: #A08A5D;
+      border-color: #A08A5D;
+    }
+
+    .custom-outline-btn:hover {
+      background-color: #A08A5D;
+      color: white;
+      border-color: #A08A5D;
+    }
+
+
     .custom-border {
       border-color: #A08A5D !important;
     }
@@ -115,6 +137,51 @@
 
     .bg-dark-800 {
       background-color: #1a1a1a !important;
+    }
+
+    .ratio-9x16 {
+      position: relative;
+      width: 60%; /* тут задаємо розмір відео */
+      margin: 0 auto; /* центрування */
+      padding-top: calc(100% * 16 / 9);
+    }
+    .ratio-9x16 > video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-small {
+      width: 220px;   /* ширина плеєра */
+      height: auto;   /* автоматична висота для збереження пропорцій */
+      border-radius: 3%;
+      overflow: hidden;
+      border-right: 4px solid #A08A5D;
+    }
+
+    .about-text {
+      background: rgba(255, 255, 255, 0.05); /* напівпрозорий фон */
+      border-left: 4px solid #A08A5D; /* акцентна смужка зліва */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about-text:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-custom-outline {
+      color: #A08A5D;
+      border-color: #A08A5D;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .btn-custom-outline:hover,
+    .btn-custom-outline:focus {
+      background-color: #A08A5D;
+      color: white;
+      border-color: #A08A5D;
     }
 
   </style>
@@ -159,11 +226,12 @@
       <ul class="navbar-nav">
         {% if LANGUAGE_CODE == 'pl' %}
           <li class="nav-item"><a class="nav-link text-gold" href="/about/">O nas</a></li>
-          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Kontakt</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Kontakt</a></li>
           <li class="nav-item"><a class="nav-link text-gold" href="/policy/">Polityka prywatności</a></li>
         {% elif LANGUAGE_CODE == 'en' %}
           <li class="nav-item"><a class="nav-link text-gold" href="/about/">About us</a></li>
           <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Contacts</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/policy/">Private policy</a></li>
         {% elif LANGUAGE_CODE == 'ru' %}
           <li class="nav-item"><a class="nav-link text-gold" href="/about/">О нас</a></li>
           <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Контакты</a></li>

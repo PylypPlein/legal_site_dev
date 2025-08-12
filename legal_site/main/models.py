@@ -104,3 +104,51 @@ class PrivacyPolicySubsection(models.Model):
 
     def __str__(self):
         return f"{self.section.number}.{self.number}"
+
+from django.db import models
+
+class JobOffer(models.Model):
+    STATUS_CHOICES = [
+        ('draft', 'Szkic'),
+        ('published', 'Opublikowana'),
+        ('closed', 'Zamknięta'),
+    ]
+
+    # Tytuł w różnych językach
+    title_pl = models.CharField("Tytuł (PL)", max_length=200)
+    title_en = models.CharField("Tytuł (EN)", max_length=200)
+    title_ru = models.CharField("Tytuł (RU)", max_length=200)
+    title_ua = models.CharField("Tytuł (UA)", max_length=200)
+
+    # Nazwa firmy (zakładam, że nie trzeba tłumaczyć)
+    company_name = models.CharField("Firma", max_length=150)
+
+    location = models.CharField("Lokalizacja", max_length=150)
+
+    # Opis stanowiska w różnych językach
+    description_pl = models.TextField("Opis (PL)")
+    description_en = models.TextField("Opis (EN)")
+    description_ru = models.TextField("Opis (RU)")
+    description_ua = models.TextField("Opis (UA)")
+
+    # Wymagania w różnych językach
+    requirements_pl = models.TextField("Wymagania (PL)", blank=True)
+    requirements_en = models.TextField("Wymagania (EN)", blank=True)
+    requirements_ru = models.TextField("Wymagania (RU)", blank=True)
+    requirements_ua = models.TextField("Wymagania (UA)", blank=True)
+
+    salary_from = models.DecimalField("Pensja od", max_digits=10, decimal_places=2, null=True, blank=True)
+    salary_to = models.DecimalField("Pensja do", max_digits=10, decimal_places=2, null=True, blank=True)
+
+    published_at = models.DateTimeField("Data dodania", auto_now_add=True)
+    valid_until = models.DateField("Oferta ważna do", null=True, blank=True)
+
+    status = models.CharField("Status", max_length=10, choices=STATUS_CHOICES, default='draft')
+
+    class Meta:
+        verbose_name = "Oferta pracy"
+        verbose_name_plural = "Oferty pracy"
+        ordering = ['-published_at']
+
+    def __str__(self):
+        return f"{self.title_pl} – {self.company_name}"

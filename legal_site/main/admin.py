@@ -7,6 +7,7 @@ from .models import Service
 
 from django.contrib import admin
 from .models import Service, Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection
+from .models import JobOffer
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
@@ -52,3 +53,30 @@ class PrivacyPolicySectionAdmin(admin.ModelAdmin):
 class PrivacyPolicySubsectionAdmin(admin.ModelAdmin):
     list_display = ("__str__", "section")
     list_filter = ("section",)
+
+
+
+@admin.register(JobOffer)
+class JobOfferAdmin(admin.ModelAdmin):
+    list_display = ("title_pl", "company_name", "location", "status", "published_at", "valid_until")
+    list_filter = ("status", "location", "company_name")
+    search_fields = ("title_pl", "title_en", "title_ru", "title_ua",
+                     "description_pl", "description_en", "description_ru", "description_ua")
+    ordering = ("-published_at",)
+    date_hierarchy = "published_at"
+    list_editable = ("status",)
+
+    fieldsets = (
+        ("Podstawowe informacje", {
+            "fields": ("company_name", "location", "status", "salary_from", "salary_to", "valid_until")
+        }),
+        ("Tytuł w różnych językach", {
+            "fields": ("title_pl", "title_en", "title_ru", "title_ua")
+        }),
+        ("Opis w różnych językach", {
+            "fields": ("description_pl", "description_en", "description_ru", "description_ua")
+        }),
+        ("Wymagania w różnych językach", {
+            "fields": ("requirements_pl", "requirements_en", "requirements_ru", "requirements_ua")
+        }),
+    )

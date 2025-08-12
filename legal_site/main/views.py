@@ -3,7 +3,7 @@ from .models import Service
 # Create your views here.
 from django.shortcuts import render, redirect
 from .forms import ContactForm
-from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection
+from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection, JobOffer
 
 def index(request):
     services = Service.objects.all()
@@ -30,3 +30,9 @@ def contact(request):
     else:
         form = ContactForm()
     return render(request, 'main/contact.html', {'form': form})
+
+def job_list(request):
+    jobs = JobOffer.objects.filter(status='published')
+    company = Firma.objects.first()
+    return render(request, 'main/job_offers.html', {'jobs': jobs,'company':company})
+

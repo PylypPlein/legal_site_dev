@@ -3,7 +3,7 @@
 {% load static i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <!-- HERO SECTION -->
-<section class="text-center py-5  position-relative"
+<section class="text-center py-5 position-relative fade-in-section"
          style="background-image: url('https://www.theladders.com/wp-content/uploads/sales-meeting-191002.jpg'); background-size: cover;
            background-position: center 7%; /* ниже фокус, видно низ фото */
            background-repeat: no-repeat;
@@ -11,33 +11,28 @@
 
   <!-- затемняющий оверлей -->
   <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5);"></div>
-
   <div class="position-relative" style="z-index: 1;">
     <img src="{% static 'main/logo.png' %}"
-     class="rounded-circle shadow mb-3"
+     class="rounded-circle shadow mb-2"
      alt="Logo"
-     style="width: 100px; height: 100px; object-fit: cover;">
+     style="width: 250px; height: 250px; object-fit: cover;">
 
     {% if LANGUAGE_CODE == 'pl' %}
-      <h1 class="display-5 fw-bold text-white">Visa Project</h1>
       <p class="lead text-light">Prawnik ds. migracji i prawa gospodarczego w Polsce</p>
       <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
         Umów się na konsultację
       </button>
     {% elif LANGUAGE_CODE == 'en' %}
-      <h1 class="display-5 fw-bold text-white">Visa Project</h1>
       <p class="lead text-light">Immigration and business law attorney in Poland</p>
       <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
         Book a consultation
       </button>
     {% elif LANGUAGE_CODE == 'ru' %}
-      <h1 class="display-5 fw-bold text-white">Visa Project</h1>
       <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
       <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
         Записаться на консультацию
       </button>
     {% elif LANGUAGE_CODE == 'uk' %}
-      <h1 class="display-5 fw-bold text-white">Visa Project</h1>
       <p class="lead text-light">Юрист з міграційного та бізнес-права в Польщі</p>
       <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
         Записатися на консультацію
@@ -54,19 +49,178 @@
   </div>
 </section>
 
+{% if LANGUAGE_CODE == 'pl' %}
+<section class="container py-5">
+  <div class="row">
+    <div class="col-lg-8" data-aos="fade-right">
+      <div class="about-text p-4 rounded shadow-lg">
+        <h2 class="mb-4 fw-bold" style="color: #A08A5D;">O nas</h2>
+        <p class="fs-5 text-light">
+          Świadczymy pomoc prawną w Polsce od 2019 roku. Specjalizujemy się w legalizacji pobytu cudzoziemców, zakładaniu i obsłudze firm, a także w uzyskiwaniu zezwoleń na pracę oraz kart pobytu. Gwarantujemy indywidualne podejście, rzetelność i pełną zgodność z obowiązującym prawem.
+        </p>
+      </div>
+      <div class="mt-4">
+        <button type="button" class="btn btn-lg btn-custom-outline me-2">
+          <i class="bi bi-briefcase me-2"></i>Usługi
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline me-2">
+          <i class="bi bi-people me-2"></i>Nasz zespół
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline">
+          <i class="bi bi-envelope me-2"></i>Kontakt
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-4" data-aos="fade-left">
 
+        <video class="video-small" autoplay muted playsinline loop>
+          <source src="{% static 'main/video/video.mp4' %}" type="video/mp4">
+          Twoja przeglądarka nie obsługuje wideo.
+        </video>
+
+    </div>
+  </div>
+</section>
+
+{% elif LANGUAGE_CODE == 'en' %}
+<section class="container py-5">
+  <div class="row " data-aos="fade-right">
+    <div class="col-lg-8">
+      <div class="about-text p-4 rounded shadow-lg">
+        <h2 class="mb-4 fw-bold" style="color: #A08A5D;">About us</h2>
+        <p class="fs-5 text-light">
+          We have been providing legal assistance in Poland since 2019. Our expertise includes the legalization of foreigners, business registration and support, as well as obtaining work permits and residence cards. We guarantee a personalized approach, accuracy, and full compliance with legal regulations.
+        </p>
+      </div>
+      <div class="mt-4">
+        <button type="button" class="btn btn-lg btn-custom-outline me-2">
+          <i class="bi bi-briefcase me-2"></i>Services
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline me-2">
+          <i class="bi bi-people me-2"></i>Our team
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline">
+          <i class="bi bi-envelope me-2"></i>Contact
+        </button>
+      </div>
+    </div>
+
+    <div class="col-lg-4" data-aos="fade-left">
+        <video class="video-small" autoplay muted playsinline loop>
+          <source src="{% static 'main/video/video.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+    </div>
+  </div>
+</section>
+
+{% elif LANGUAGE_CODE == 'ru' %}
+<section class="container py-5">
+  <div class="row ">
+    <div class="col-lg-8" data-aos="fade-right">
+      <div class="about-text p-4 rounded shadow-lg">
+        <h2 class="mb-4 fw-bold" style="color: #A08A5D;">О нас</h2>
+        <p class="fs-5 text-light">
+          Я предоставляю юридическую помощь в Польше с 2019 года. Специализируюсь на легализации иностранцев,
+          открытии и сопровождении бизнеса, а также разрешениях на работу и ВНЖ.
+          Гарантирую персональный подход, точность и соблюдение всех правовых норм.
+        </p>
+      </div>
+      <div class="mt-4">
+        <button type="button" class="btn btn-lg btn-custom-outline me-2">
+          <i class="bi bi-briefcase me-2"></i>Услуги
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline me-2">
+          <i class="bi bi-people me-2"></i>Штат
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline">
+          <i class="bi bi-envelope me-2"></i>Контакт
+        </button>
+        <button type="button" href="/job"class="btn btn-lg btn-custom-outline">
+          <i class="bi bi-envelope me-2"></i>Вакансии
+        </button>
+      </div>
+
+    </div>
+    <div class="col-lg-4" data-aos="fade-left">
+        <video class="video-small" autoplay muted playsinline loop>
+          <source src="{% static 'main/video/video.mp4' %}" type="video/mp4">
+          Ваш браузер не поддерживает воспроизведение видео.
+        </video>
+
+    </div>
+  </div>
+</section>
+
+{% elif LANGUAGE_CODE == 'uk' %}
+<section class="container py-5">
+  <div class="row">
+    <div class="col-lg-9" data-aos="fade-right">
+      <div class="about-text p-4 rounded shadow-lg">
+        <h2 class="mb-4">Про нас</h2>
+        <hr>
+          <p class="fs-5 text-light">
+            Ми надаємо юридичну допомогу в Польщі з 2019 року. Спеціалізуємося на легалізації іноземців, відкритті та супроводі бізнесу, а також отриманні дозволів на роботу та посвідки на проживання. Гарантуємо індивідуальний підхід, точність і дотримання всіх юридичних норм.
+          </p>
+
+      </div>
+      <div class="mt-4">
+        <button type="button" class="btn btn-lg btn-custom-outline me-2">
+          <i class="bi bi-briefcase me-2"></i>Послуги
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline me-2">
+          <i class="bi bi-people me-2"></i>Штат
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline">
+          <i class="bi bi-envelope me-2"></i>Контакт
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-3" data-aos="fade-left">
+        <video class="video-small" autoplay muted playsinline loop>
+          <source src="{% static 'main/video/video.mp4' %}" type="video/mp4">
+          Ваш браузер не підтримує відтворення відео.
+        </video>
+    </div>
+  </div>
+</section>
+
+{% else %}
+<section class="container py-5">
+  <div class="row align-items-center">
+    <div class="col-lg-6">
+      <div class="about-text p-4 rounded shadow-lg">
+        <h2 class="mb-4">Обо мне</h2>
+        <p class="fs-5">
+          Я предоставляю юридическую помощь в Польше с 2019 года. Специализируюсь на легализации иностранцев, открытии и сопровождении бизнеса, а также разрешениях на работу и ВНЖ. Гарантирую персональный подход, точность и соблюдение всех правовых норм.
+        </p>
+      </div>
+
+    </div>
+    <div class="col-lg-6">
+      <div class="ratio-9x16">
+        <video class="video-small" controls>
+          <source src="{% static 'main/video/video.mp4' %}" type="video/mp4">
+          Ваш браузер не поддерживает воспроизведение видео.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <!-- ABOUT -->
-<!-- ABOUT -->
+<!-- ABOUT
 {% if LANGUAGE_CODE == 'pl' %}
   <section class="container py-5">
-    <h2 class="mb-4">O nas</h2>
+    <h2 class="mb-4" style="color: #A08A5D">O nas</h2>
     <p class="fs-5">
       Świadczymy pomoc prawną w Polsce od 2019 roku. Specjalizujemy się w legalizacji pobytu cudzoziemców, zakładaniu i obsłudze firm, a także w uzyskiwaniu zezwoleń na pracę oraz kart pobytu. Gwarantujemy indywidualne podejście, rzetelność i pełną zgodność z obowiązującym prawem.    </p>
   </section>
 {% elif LANGUAGE_CODE == 'en' %}
   <section class="container py-5">
-    <h2 class="mb-4">About us</h2>
+    <h2 class="mb-4" style="color: #A08A5D">About us</h2>
     <p class="fs-5">
       We have been providing legal assistance in Poland since 2019. Our expertise includes the legalization of foreigners, business registration and support, as well as obtaining work permits and residence cards. We guarantee a personalized approach, accuracy, and full compliance with legal regulations.    </p>
   </section>
@@ -91,7 +245,7 @@
   </section>
 {% endif %}
 
-
+-->
 <section class="py-5" style="background-color: white">
   <div class="container">
     <h2 class="mb-5 text-center position-relative d-inline-block" data-aos="fade-up" style="color: black">
@@ -104,7 +258,7 @@
       <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'1' }}00">
         <div class="card h-100 shadow-lg border-0 bg-dark text-white rounded-4">
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title mb-3">
+            <h4 class="card-title mb-3">
               {% if LANGUAGE_CODE == 'pl' %}
                 {{ service.name_pl }}
               {% elif LANGUAGE_CODE == 'en' %}
@@ -116,7 +270,8 @@
               {% else %}
                 {{ service.name_en }}
               {% endif %}
-            </h5>
+            </h4>
+            <hr>
             <p class="card-text text-light mb-4">
               {% if LANGUAGE_CODE == 'pl' %}
                 {{ service.description_pl }}
@@ -132,9 +287,14 @@
             </p>
             <!-- OPTIONAL: кнопка -->
 
-            <a href="#" class="btn btn-outline-warning mt-auto" data-bs-toggle="modal" data-bs-target="#contactModal">
-              {% trans "Записаться" %}
+            <a href="#"
+               class="btn btn-outline-warning custom-outline-btn mt-auto"
+               data-bs-toggle="modal"
+               data-bs-target="#contactModal"
+               style="border-color: #A08A5D;">
+               {% trans "Записаться" %}
             </a>
+
 
           </div>
         </div>
@@ -153,7 +313,7 @@
 <!-- WHY ME -->
 {% if LANGUAGE_CODE == 'pl' %}
 <section class="container py-5">
-  <h2 class="mb-4 text-center" data-aos="fade-up">Dlaczego warto mnie wybrać</h2>
+  <h2 class="mb-4 text-center" data-aos="fade-up">Dlaczego warto nas wybrać</h2>
   <div class="row text-center">
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
       <i class="bi bi-award fs-1 text-danger"></i>
@@ -180,20 +340,20 @@
 
 {% elif LANGUAGE_CODE == 'en' %}
 <section class="container py-5">
-  <h2 class="mb-4 text-center">Why Choose Me</h2>
+  <h2 class="mb-4 text-center">Why Choose us</h2>
   <div class="row text-center">
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-      <i class="bi bi-award fs-1 text-primary"></i>
+      <i class="bi bi-award fs-1 text-danger"></i>
       <h5 class="mt-3">Experience Since 2019</h5>
       <p>Over 5 years of legal practice in Poland</p>
     </div>
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-      <i class="bi bi-shield-check fs-1 text-success"></i>
+      <i class="bi bi-shield-check fs-1 text-danger"></i>
       <h5 class="mt-3">Reliability</h5>
       <p>I work under contract and provide guarantees</p>
     </div>
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-      <i class="bi bi-clock-history fs-1 text-warning"></i>
+      <i class="bi bi-clock-history fs-1 text-danger"></i>
       <h5 class="mt-3">Efficiency</h5>
       <p>Prompt submission and full support</p>
     </div>
@@ -206,20 +366,20 @@
 </section>
 {% elif LANGUAGE_CODE == 'uk' %}
 <section class="container py-5">
-  <h2 class="mb-4 text-center">Чому обирають мене</h2>
+  <h2 class="mb-4 text-center">Чому обирають нас</h2>
   <div class="row text-center">
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-      <i class="bi bi-award fs-1 text-primary"></i>
+      <i class="bi bi-award fs-1 text-danger"></i>
       <h5 class="mt-3">Досвід з 2019 року</h5>
       <p>Понад 5 років юридичної практики в Польщі</p>
     </div>
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-      <i class="bi bi-shield-check fs-1 text-success"></i>
+      <i class="bi bi-shield-check fs-1 text-danger"></i>
       <h5 class="mt-3">Надійність</h5>
       <p>Працюю за договором, надаю гарантії</p>
     </div>
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-      <i class="bi bi-clock-history fs-1 text-warning"></i>
+      <i class="bi bi-clock-history fs-1 text-danger"></i>
       <h5 class="mt-3">Ефективність</h5>
       <p>Оперативна подача та супровід</p>
     </div>
@@ -232,7 +392,7 @@
 </section>
 {% else %}
 <section class="container py-5">
-  <h2 class="mb-4 text-center">Почему выбирают меня</h2>
+  <h2 class="mb-4 text-center">Почему выбирают нас</h2>
   <div class="row text-center">
     <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
       <i class="bi bi-award fs-1 text-danger"></i>
@@ -301,7 +461,7 @@
 
 <!-- CONTACT -->
 <!-- CONTACT + MAP -->
-<section class="py-5" style="background-color: var(--color-bg); color: var(--color-white);">
+<section id="contact" class="py-5" style="background-color: var(--color-bg); color: var(--color-white);">
   <div class="container">
     <h2 class="text-center mb-5" data-aos="fade-up">{% trans "Контакты" %}</h2>
 
@@ -321,7 +481,7 @@
           </div>
 
           <div class="col-12" data-aos="fade-up">
-            <div class="d-flex align-items-start p-4 border-start border-4 border-warning bg-dark rounded shadow h-100">
+            <div class="d-flex align-items-start p-4 border-start border-4  border-warning bg-dark rounded shadow h-100">
               <i class="bi bi-telephone-fill fs-3 text-warning me-3"></i>
               <div>
                 <h5 class="mb-1">{{company.telefon_legalizacja}}</h5>
@@ -518,6 +678,15 @@
     document.getElementById('modalProfession').textContent = card.getAttribute('data-profession');
     document.getElementById('modalYears').textContent = card.getAttribute('data-years') + ' years';
     document.getElementById('modalDescription').textContent = card.getAttribute('data-description');
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const section = document.querySelector('.fade-in-section');
+    setTimeout(() => {
+      section.classList.add('visible');
+    }, 100); // задержка чтобы анимация сработала плавно
   });
 </script>
 
