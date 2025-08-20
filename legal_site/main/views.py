@@ -3,7 +3,7 @@ from .models import Service
 # Create your views here.
 from django.shortcuts import render, redirect
 from .forms import ContactRequestForm
-from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection, JobOffer
+from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection, JobOffer, BlacklistedCountry
 from ipware import get_client_ip
 
 def index(request):
