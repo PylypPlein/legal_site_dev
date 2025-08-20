@@ -4,6 +4,7 @@ from .models import Service
 from django.shortcuts import render, redirect
 from .forms import ContactRequestForm
 from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection, JobOffer
+from ipware import get_client_ip
 
 def index(request):
     services = Service.objects.all()
@@ -55,13 +56,54 @@ def contact(request):
     else:
         form = ContactForm()
     return render(request, 'main/contact.html', {'form': form})
-    '''
+    
 
 def job_list(request):
     jobs = JobOffer.objects.filter(status='published')
     company = Firma.objects.first()
     return render(request, 'main/job_offers.html', {'jobs': jobs,'company':company})
+    '''
+def job_list(request):
+    # Pobranie IP
+    ip, is_routable = get_client_ip(request)
+    if ip is None:
+        ip = "Не удалось определить IP"
 
+    # Pobranie kraju
+    country = "Неизвестно"
+    try:
+        response = requests.get(f"http://ip-api.com/json/{ip}").json()
+        country = response.get("country", "None")
+    except Exception:
+        pass
+
+    # Sprawdzenie w bazie
+    is_blacklisted = BlacklistedCountry.objects.filter(name__iexact=country).exists()
+
+    if is_blacklisted:
+        # Jeśli zablokowany – renderujemy index.html
+        services = Service.objects.all()
+        employees = Employee.objects.all()
+        company = Firma.objects.first()
+        links = SocialLink.objects.all()
+        social_links = {link.name.lower(): link.url for link in links}
+
+        return render(
+            request,
+            'main/index.html',
+            {
+                'services': services,
+                'employees': employees,
+                'company': company,
+                'social_links': social_links,
+                'isBlackListed': True
+            }
+        )
+
+    # Jeśli nie zablokowany – normalny widok job_list
+    jobs = JobOffer.objects.filter(status='published')
+    company = Firma.objects.first()
+    return render(request, 'main/job_offers.html', {'jobs': jobs, 'company': company})
 
 # views.py
 from django.shortcuts import render, redirect
