@@ -5,6 +5,12 @@ from django.shortcuts import render, redirect
 from .forms import ContactRequestForm
 from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection, JobOffer, BlacklistedCountry
 from ipware import get_client_ip
+# views.py
+from django.shortcuts import render, redirect
+from .forms import ContactRequestForm
+from .models import Service
+from django.urls import reverse
+from django.contrib import messages
 
 def index(request):
     services = Service.objects.all()
@@ -64,30 +70,18 @@ def job_list(request):
     return render(request, 'main/job_offers.html', {'jobs': jobs,'company':company})
     '''
 def job_list(request):
-    # Pobranie IP
-    ip, is_routable = get_client_ip(request)
-    if ip is None:
-        ip = "Не удалось определить IP"
+    # Pobranie danych do index.html (na wypadek zablokowanego)
+    services = Service.objects.all()
+    employees = Employee.objects.all()
+    company = Firma.objects.first()
+    links = SocialLink.objects.all()
+    social_links = {link.name.lower(): link.url for link in links}
 
-    # Pobranie kraju
-    country = "Неизвестно"
-    try:
-        response = requests.get(f"http://ip-api.com/json/{ip}").json()
-        country = response.get("country", "None")
-    except Exception:
-        pass
-
-    # Sprawdzenie w bazie
-    is_blacklisted = BlacklistedCountry.objects.filter(name__iexact=country).exists()
+    # Sprawdzenie flagi z middleware
+    is_blacklisted = getattr(request, "is_blacklisted", False)
 
     if is_blacklisted:
-        # Jeśli zablokowany – renderujemy index.html
-        services = Service.objects.all()
-        employees = Employee.objects.all()
-        company = Firma.objects.first()
-        links = SocialLink.objects.all()
-        social_links = {link.name.lower(): link.url for link in links}
-
+        # Renderujemy index.html zamiast job_offers.html
         return render(
             request,
             'main/index.html',
@@ -105,12 +99,6 @@ def job_list(request):
     company = Firma.objects.first()
     return render(request, 'main/job_offers.html', {'jobs': jobs, 'company': company})
 
-# views.py
-from django.shortcuts import render, redirect
-from .forms import ContactRequestForm
-from .models import Service
-from django.urls import reverse
-from django.contrib import messages
 
 
 def contact_view(request):
