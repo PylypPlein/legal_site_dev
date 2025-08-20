@@ -580,7 +580,7 @@
 
         <!-- Заголовок -->
         <div class="modal-header rounded-top-4 custom-border border-bottom bg-black">
-          <h5 class="modal-title" id="contactModalLabel">
+          <h5 class="modal-title fw-bold" id="contactModalLabel">
             {% if LANGUAGE_CODE == 'pl' %}
               Umów się na konsultację
             {% elif LANGUAGE_CODE == 'en' %}
@@ -601,54 +601,76 @@
         <!-- Контент -->
         <div class="modal-body py-4 px-4">
           <div class="row g-4">
+
             <div class="col-md-6">
-              <label for="name" class="form-label">{% trans "Имя" %}</label>
-              <input type="text" class="form-control text-white bg-dark-800 custom-border" id="name" name="name" required>
+              <label for="name" class="form-label fw-semibold">{% trans "Имя" %}</label>
+              <input type="text" class="form-control text-white bg-dark-800 custom-border rounded-3 shadow-sm" id="name" name="name" required>
             </div>
 
             <div class="col-md-6">
-              <label for="phone" class="form-label">{% trans "Телефон" %}</label>
-              <input type="tel" class="form-control text-white bg-dark-800 custom-border" id="phone" name="phone"
+              <label for="phone" class="form-label fw-semibold">{% trans "Телефон" %}</label>
+              <input type="tel" class="form-control text-white bg-dark-800 custom-border rounded-3 shadow-sm" id="phone" name="phone"
                 required pattern="\+?[0-9\s\-]{7,15}" placeholder="+48 XXX XXX XXX">
             </div>
 
             <div class="col-md-6">
-              <label for="email" class="form-label">{% trans "Электронная почта" %}</label>
-              <input type="email" class="form-control text-white bg-dark-800 custom-border" id="email" name="email" required>
+              <label for="email" class="form-label fw-semibold">{% trans "Электронная почта" %}</label>
+              <input type="email" class="form-control text-white bg-dark-800 custom-border rounded-3 shadow-sm" id="email" name="email" required>
             </div>
 
             <div class="col-md-6">
-              <label for="service" class="form-label">{% trans "Выберите услугу" %}</label>
-              <select class="form-select text-white bg-dark-800 custom-border" id="service" name="service" required>
+              <label for="service" class="form-label fw-semibold">{% trans "Выберите услугу" %}</label>
+              <select class="form-select text-white bg-dark-800 custom-border rounded-3 shadow-sm" id="service" name="service" required>
                 <option value="" disabled selected>{% trans "Выберите услугу" %}</option>
                 {% for service in services %}
-                <option value="{{ service.id }}">
-                  {% if LANGUAGE_CODE == 'pl' %}
-                    {{ service.name_pl }}
-                  {% elif LANGUAGE_CODE == 'en' %}
-                    {{ service.name_en }}
-                  {% elif LANGUAGE_CODE == 'ru' %}
-                    {{ service.name_ru }}
-                  {% elif LANGUAGE_CODE == 'uk' %}
-                    {{ service.name_uk }}
-                  {% else %}
-                    {{ service.name }}
-                  {% endif %}
-                </option>
+                  <option value="{{ service.id }}">
+                    {% if LANGUAGE_CODE == 'pl' %}
+                      {{ service.name_pl }}
+                    {% elif LANGUAGE_CODE == 'en' %}
+                      {{ service.name_en }}
+                    {% elif LANGUAGE_CODE == 'ru' %}
+                      {{ service.name_ru }}
+                    {% elif LANGUAGE_CODE == 'uk' %}
+                      {{ service.name_uk }}
+                    {% else %}
+                      {{ service.name }}
+                    {% endif %}
+                  </option>
                 {% endfor %}
               </select>
             </div>
 
             <div class="col-12">
-              <label for="message" class="form-label">{% trans "Сообщение" %}</label>
-              <textarea class="form-control text-white bg-dark-800 custom-border" id="message" name="message"
+              <label for="message" class="form-label fw-semibold">{% trans "Сообщение" %}</label>
+              <textarea class="form-control text-white bg-dark-800 custom-border rounded-3 shadow-sm" id="message" name="message"
                 rows="4" placeholder="..." style="resize: none;"></textarea>
             </div>
+
+            <!-- Checkbox політики -->
+            <div class="col-12 mt-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="accepted" id="policyConsent" name="policyConsent" required>
+                <label class="form-check-label" for="policyConsent" style="line-height: 1.5;">
+                  {% if LANGUAGE_CODE == 'pl' %}
+                    Akceptuję <a href="{% url 'policy' %}" target="_blank" class="text-decoration-underline text-white">politykę prywatności</a>
+                  {% elif LANGUAGE_CODE == 'en' %}
+                    I agree to the <a href="{% url 'policy' %}" target="_blank" class="text-decoration-underline text-white">privacy policy</a>
+                  {% elif LANGUAGE_CODE == 'ru' %}
+                    Я соглашаюсь с <a href="{% url 'policy' %}" target="_blank" class="text-decoration-underline text-white">политикой конфиденциальности</a>
+                  {% elif LANGUAGE_CODE == 'uk' %}
+                    Я погоджуюсь з <a href="{% url 'policy' %}" target="_blank" class="text-decoration-underline text-white">політикою конфіденційності</a>
+                  {% else %}
+                    Я соглашаюсь с <a href="{% url 'policy' %}" target="_blank" class="text-decoration-underline text-white">политикой конфиденциальности</a>
+                  {% endif %}
+                </label>
+              </div>
+            </div>
+
           </div>
         </div>
 
         <!-- Подвал -->
-        <div class="modal-footer rounded-bottom-4 border-top custom-border bg-black">
+        <div class="modal-footer rounded-bottom-4 border-top custom-border bg-black d-flex justify-content-end gap-2">
           <button type="button" class="btn custom-gold-outline" data-bs-dismiss="modal">
             {% trans "Отмена" %}
           </button>
@@ -656,10 +678,12 @@
             {% trans "Отправить" %}
           </button>
         </div>
+
       </form>
     </div>
   </div>
 </div>
+
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
