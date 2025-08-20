@@ -69,10 +69,12 @@
         <button type="button" class="btn btn-lg btn-custom-outline">
           <i class="bi bi-envelope me-2"></i>Kontakt
         </button>
+        {% if not isBlackListed %}
         <button type="button" class="btn btn-lg btn-custom-outline"
                 onclick="location.href='{% url 'job_list' %}'">
           <i class="bi bi-envelope me-2"></i>Oferty pracy
         </button>
+        {% endif %}
       </div>
     </div>
     <div class="col-lg-4" data-aos="fade-left">
@@ -106,10 +108,12 @@
         <button type="button" class="btn btn-lg btn-custom-outline">
           <i class="bi bi-envelope me-2"></i>Contact
         </button>
+        {% if not isBlackListed %}
         <button type="button" class="btn btn-lg btn-custom-outline"
                 onclick="location.href='{% url 'job_list' %}'">
           <i class="bi bi-envelope me-2"></i>Job offers
         </button>
+        {% endif %}
       </div>
     </div>
 
@@ -145,10 +149,12 @@
         <button type="button" class="btn btn-lg btn-custom-outline">
           <i class="bi bi-envelope me-2"></i>Контакт
         </button>
+        {% if not isBlackListed %}
         <button type="button" class="btn btn-lg btn-custom-outline"
                 onclick="location.href='{% url 'job_list' %}'">
           <i class="bi bi-envelope me-2"></i>Вакансии
         </button>
+        {% endif %}
       </div>
 
     </div>
@@ -184,10 +190,12 @@
         <button type="button" class="btn btn-lg btn-custom-outline">
           <i class="bi bi-envelope me-2"></i>Контакт
         </button>
+        {% if not isBlackListed %}
         <button type="button" class="btn btn-lg btn-custom-outline"
                 onclick="location.href='{% url 'job_list' %}'">
           <i class="bi bi-envelope me-2"></i>Вакансії
         </button>
+        {% endif %}
       </div>
     </div>
     <div class="col-lg-3" data-aos="fade-left">
