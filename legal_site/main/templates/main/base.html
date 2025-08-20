@@ -169,7 +169,14 @@
       overflow: hidden;
       border-right: 4px solid #A08A5D;
     }
-
+    @media (max-width: 768px) {
+      .video-small {
+        width: 100%;  /* займає всю ширину контейнера */
+        max-height: 400px; /* можна обмежити висоту */
+        object-fit: cover; /* щоб відео добре вписувалося */
+        margin-top: 20px;  /* відступ зверху */
+      }
+    }
     .about-text {
       background: rgba(255, 255, 255, 0.05); /* напівпрозорий фон */
       border-left: 4px solid #A08A5D; /* акцентна смужка зліва */
