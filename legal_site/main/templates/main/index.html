@@ -16,7 +16,7 @@
      class="rounded-circle shadow mb-2"
      alt="Logo"
      style="width: 290px; height: 290px; object-fit: cover;">
-
+    <p>{{ isBlackListed }}</p>
     {% if LANGUAGE_CODE == 'pl' %}
       <p class="lead text-light">Prawnik ds. migracji i prawa gospodarczego w Polsce</p>
       <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
@@ -69,6 +69,10 @@
         <button type="button" class="btn btn-lg btn-custom-outline">
           <i class="bi bi-envelope me-2"></i>Kontakt
         </button>
+        <button type="button" class="btn btn-lg btn-custom-outline"
+                onclick="location.href='{% url 'job_list' %}'">
+          <i class="bi bi-envelope me-2"></i>Oferty pracy
+        </button>
       </div>
     </div>
     <div class="col-lg-4" data-aos="fade-left">
@@ -101,6 +105,10 @@
         </button>
         <button type="button" class="btn btn-lg btn-custom-outline">
           <i class="bi bi-envelope me-2"></i>Contact
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline"
+                onclick="location.href='{% url 'job_list' %}'">
+          <i class="bi bi-envelope me-2"></i>Job offers
         </button>
       </div>
     </div>
@@ -137,7 +145,8 @@
         <button type="button" class="btn btn-lg btn-custom-outline">
           <i class="bi bi-envelope me-2"></i>Контакт
         </button>
-        <button type="button" href="/job"class="btn btn-lg btn-custom-outline">
+        <button type="button" class="btn btn-lg btn-custom-outline"
+                onclick="location.href='{% url 'job_list' %}'">
           <i class="bi bi-envelope me-2"></i>Вакансии
         </button>
       </div>
@@ -174,6 +183,10 @@
         </button>
         <button type="button" class="btn btn-lg btn-custom-outline">
           <i class="bi bi-envelope me-2"></i>Контакт
+        </button>
+        <button type="button" class="btn btn-lg btn-custom-outline"
+                onclick="location.href='{% url 'job_list' %}'">
+          <i class="bi bi-envelope me-2"></i>Вакансії
         </button>
       </div>
     </div>

@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'main.middleware.LogUserIPMiddleware',
 ]
 
 ROOT_URLCONF = 'legal_site.urls'

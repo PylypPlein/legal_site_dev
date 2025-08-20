@@ -152,3 +152,20 @@ class JobOffer(models.Model):
 
     def __str__(self):
         return f"{self.title_pl} – {self.company_name}"
+
+class ContactRequest(models.Model):
+    name = models.CharField("Имя", max_length=255)
+    phone = models.CharField("Телефон", max_length=20)
+    email = models.EmailField("Электронная почта")
+    service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, verbose_name="Услуга")
+    message = models.TextField("Сообщение", blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.service}"
+
+class BlacklistedCountry(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name

@@ -1,13 +1,7 @@
 from django.contrib import admin
-
-# Register your models here.
-# admin.py
-from django.contrib import admin
-from .models import Service
-
-from django.contrib import admin
 from .models import Service, Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection
 from .models import JobOffer
+from .models import BlacklistedCountry, ContactRequest, Service
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
@@ -80,3 +74,14 @@ class JobOfferAdmin(admin.ModelAdmin):
             "fields": ("requirements_pl", "requirements_en", "requirements_ru", "requirements_ua")
         }),
     )
+
+@admin.register(ContactRequest)
+class ContactRequestAdmin(admin.ModelAdmin):
+    list_display = ('name', 'phone', 'email', 'service', 'created_at')
+    list_filter = ('service', 'created_at')
+    search_fields = ('name', 'phone', 'email', 'message')
+    readonly_fields = ('created_at',)
+
+@admin.register(BlacklistedCountry)
+class BlacklistedCountryAdmin(admin.ModelAdmin):
+    list_display = ("name",)
