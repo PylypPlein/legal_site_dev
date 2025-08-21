@@ -32,7 +32,8 @@
     }
 
     :root {
-      --color-bg: #0F0F0F;
+      --color-bg-bg: #0F0F0F;
+      --color-bg: radial-gradient(circle at center, #0F0F0F, #1A1A1A);
       --color-text-gold: #A08A5D;
       --color-text-light: #D1D1D1;
       --color-white: #F4F4F4;
@@ -40,12 +41,26 @@
       --color-button-hover: #E1C88A;
     }
 
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* ukrywa poziomy scrollbar */
+      width: 100%;
+    }
+
     body {
-      background-color: var(--color-bg);
+      overflow-x: hidden;
+      background: var(--color-bg);
+      background-color: var(--color-bg-bg);
       color: var(--color-text-light);
       font-family: 'Montserrat', sans-serif;
     }
-
+    section {
+      width: 100%;
+      max-width: 100vw; /* nie pozwala wychodzić poza ekran */
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
     .text-gold {
       color: var(--color-text-gold) !important;
     }
@@ -73,7 +88,7 @@
     .offcanvas,
     .navbar,
     .footer {
-      background-color: var(--color-bg) !important;
+      background-color: var(--color-bg-bg) !important;
     }
 
     .offcanvas .nav-link,

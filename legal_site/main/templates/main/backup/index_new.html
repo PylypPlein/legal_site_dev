@@ -7,7 +7,7 @@
     @import "https://unpkg.com/open-props";
 
     .button-animated-white {
-      font-family: 'Montserrat', sans-serif;
+      font-family: var(--font-sans);
       font-weight: var(--font-weight-6);
       font-size: var(--font-size-2);
       color: var(--white-2);
@@ -64,14 +64,10 @@
 
       z-index: -1;
     }
-    .gold-buttons-container {
-      display: flex;
-      flex-wrap: wrap;     /* przyciski przejdą do nowego wiersza, jeśli zabraknie miejsca */
-      gap: 20px;           /* odstęp między przyciskami */
-    }
+
     .button-animated-gold {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: var(--font-weight-4);
+      font-family: var(--font-sans);
+      font-weight: var(--font-weight-6);
       font-size: 17px;
       color: #A08A5D;
       background: transparent; /* brak wypełnienia */
@@ -89,7 +85,7 @@
       background: #A08A5D;
       color: black;
       --y: -10;
-      --scale: 0.9;
+      --scale: 1.1;
       --border-scale: 1;
     }
 
@@ -137,7 +133,7 @@
            min-height: 420px;">
 
     <!-- затемняющий оверлей -->
-    <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6);"></div>
+    <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5);"></div>
     <div class="position-relative" style="z-index: 1;">
         <!-- лого олд
         <img src="{% static 'main/logo.png' %}"
@@ -146,36 +142,35 @@
              style="width: 290px; height: 290px; object-fit: cover;">
              -->
         <img src="{% static 'main/logo.png' %}"
-             class="rounded-circle shadow mb-2"
              alt="Logo"
-             style="width: 250px; height: 250px; object-fit: cover;">
+             style="width: 390px; height: 390px; object-fit: cover;">
 
         {% if LANGUAGE_CODE == 'pl' %}
         <p class="lead text-light">Prawnik ds. migracji i prawa gospodarczego w Polsce</p>
-        <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
             Umów się na konsultację
         </button>
 
         {% elif LANGUAGE_CODE == 'en' %}
-        <p class="lead text-light" style="font-size: 16px;">Immigration and business law attorney in Poland</p>
+        <p class="lead text-light">Immigration and business law attorney in Poland</p>
         <!--<button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
             Book a consultation
         </button>-->
         <button class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">Book a consultation</button>
         {% elif LANGUAGE_CODE == 'ru' %}
         <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
-        <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
             Записаться на консультацию
         </button>
         {% elif LANGUAGE_CODE == 'uk' %}
         <p class="lead text-light">Юрист з міграційного та бізнес-права в Польщі</p>
-        <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
             Записатися на консультацію
         </button>
         {% else %}
         <h1 class="display-5 fw-bold text-white">Легалайз Пример</h1>
         <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
-        <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#contactModal">
             Записаться на консультацию
         </button>
         {% endif %}
@@ -197,23 +192,21 @@
                 </p>
             </div>
             <div class="mt-4">
-                <div class="gold-buttons-container">
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-briefcase me-2"></i>Usługi
-                    </button>
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-people me-2"></i>Nasz zespół
-                    </button>
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-envelope me-2"></i>Kontakt
-                    </button>
-                    {% if not isBlackListed %}
-                    <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'">
-                        <i class="bi bi-envelope me-2"></i>Oferty pracy
-                    </button>
-                    {% endif %}
-                </div>
+                <button type="button" class="btn btn-lg btn-custom-outline me-2">
+                    <i class="bi bi-briefcase me-2"></i>Usługi
+                </button>
+                <button type="button" class="btn btn-lg btn-custom-outline me-2">
+                    <i class="bi bi-people me-2"></i>Nasz zespół
+                </button>
+                <button type="button" class="btn btn-lg btn-custom-outline">
+                    <i class="bi bi-envelope me-2"></i>Kontakt
+                </button>
+                {% if not isBlackListed %}
+                <button type="button" class="btn btn-lg btn-custom-outline"
+                        onclick="location.href='{% url 'job_list' %}'">
+                    <i class="bi bi-envelope me-2"></i>Oferty pracy
+                </button>
+                {% endif %}
             </div>
         </div>
         <div class="col-lg-4" data-aos="fade-left">
@@ -241,23 +234,21 @@
                 </p>
             </div>
             <div class="mt-4">
-                <div class="gold-buttons-container">
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-briefcase me-2"></i>Services
-                    </button>
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-people me-2"></i>Our team
-                    </button>
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-envelope me-2"></i>Contact
-                    </button>
-                    {% if not isBlackListed %}
-                    <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'">
-                        <i class="bi bi-envelope me-2"></i>Job offers
-                    </button>
-                    {% endif %}
-                </div>
+                <button type="button" class="button-animated-gold">
+                    <i class="bi bi-briefcase me-2"></i>Services
+                </button>
+                <button type="button" class="button-animated-gold">
+                    <i class="bi bi-people me-2"></i>Our team
+                </button>
+                <button type="button" class="button-animated-gold">
+                    <i class="bi bi-envelope me-2"></i>Contact
+                </button>
+                {% if not isBlackListed %}
+                <button type="button" class="button-animated-gold"
+                        onclick="location.href='{% url 'job_list' %}'">
+                    <i class="bi bi-envelope me-2"></i>Job offers
+                </button>
+                {% endif %}
             </div>
         </div>
 
@@ -284,23 +275,21 @@
                 </p>
             </div>
             <div class="mt-4">
-                <div class="gold-buttons-container">
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-briefcase me-2"></i>Услуги
-                    </button>
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-people me-2"></i>Штат
-                    </button>
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-envelope me-2"></i>Контакт
-                    </button>
-                    {% if not isBlackListed %}
-                    <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'">
-                        <i class="bi bi-envelope me-2"></i>Вакансии
-                    </button>
-                    {% endif %}
-                </div>
+                <button type="button" class="btn btn-lg btn-custom-outline me-2">
+                    <i class="bi bi-briefcase me-2"></i>Услуги
+                </button>
+                <button type="button" class="btn btn-lg btn-custom-outline me-2">
+                    <i class="bi bi-people me-2"></i>Штат
+                </button>
+                <button type="button" class="btn btn-lg btn-custom-outline">
+                    <i class="bi bi-envelope me-2"></i>Контакт
+                </button>
+                {% if not isBlackListed %}
+                <button type="button" class="btn btn-lg btn-custom-outline"
+                        onclick="location.href='{% url 'job_list' %}'">
+                    <i class="bi bi-envelope me-2"></i>Вакансии
+                </button>
+                {% endif %}
             </div>
 
         </div>
@@ -329,23 +318,21 @@
 
             </div>
             <div class="mt-4">
-                <div class="gold-buttons-container">
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-briefcase me-2"></i>Послуги
-                    </button>
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-people me-2"></i>Штат
-                    </button>
-                    <button type="button" class="button-animated-gold">
-                        <i class="bi bi-envelope me-2"></i>Контакт
-                    </button>
-                    {% if not isBlackListed %}
-                    <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'">
-                        <i class="bi bi-envelope me-2"></i>Вакансії
-                    </button>
-                    {% endif %}
-                </div>
+                <button type="button" class="btn btn-lg btn-custom-outline me-2">
+                    <i class="bi bi-briefcase me-2"></i>Послуги
+                </button>
+                <button type="button" class="btn btn-lg btn-custom-outline me-2">
+                    <i class="bi bi-people me-2"></i>Штат
+                </button>
+                <button type="button" class="btn btn-lg btn-custom-outline">
+                    <i class="bi bi-envelope me-2"></i>Контакт
+                </button>
+                {% if not isBlackListed %}
+                <button type="button" class="btn btn-lg btn-custom-outline"
+                        onclick="location.href='{% url 'job_list' %}'">
+                    <i class="bi bi-envelope me-2"></i>Вакансії
+                </button>
+                {% endif %}
             </div>
         </div>
         <div class="col-lg-3" data-aos="fade-left">
@@ -383,6 +370,42 @@
 </section>
 {% endif %}
 
+<!-- ABOUT -->
+<!-- ABOUT
+{% if LANGUAGE_CODE == 'pl' %}
+  <section class="container py-5">
+    <h2 class="mb-4" style="color: #A08A5D">O nas</h2>
+    <p class="fs-5">
+      Świadczymy pomoc prawną w Polsce od 2019 roku. Specjalizujemy się w legalizacji pobytu cudzoziemców, zakładaniu i obsłudze firm, a także w uzyskiwaniu zezwoleń na pracę oraz kart pobytu. Gwarantujemy indywidualne podejście, rzetelność i pełną zgodność z obowiązującym prawem.    </p>
+  </section>
+{% elif LANGUAGE_CODE == 'en' %}
+  <section class="container py-5">
+    <h2 class="mb-4" style="color: #A08A5D">About us</h2>
+    <p class="fs-5">
+      We have been providing legal assistance in Poland since 2019. Our expertise includes the legalization of foreigners, business registration and support, as well as obtaining work permits and residence cards. We guarantee a personalized approach, accuracy, and full compliance with legal regulations.    </p>
+  </section>
+{% elif LANGUAGE_CODE == 'ru' %}
+  <section class="container py-5">
+    <h2 class="mb-4">О нас</h2>
+    <p class="fs-5">
+      Мы предоставляем юридическую помощь в Польше с 2019 года. Специализируемся на легализации иностранцев, открытии и сопровождении бизнеса, а также получении разрешений на работу и вида на жительство. Гарантируем индивидуальный подход, точность и соблюдение всех правовых норм.    </p>
+  </section>
+{% elif LANGUAGE_CODE == 'uk' %}
+  <section class="container py-5">
+    <h2 class="mb-4">Про нас</h2>
+    <p class="fs-5">
+      Ми надаємо юридичну допомогу в Польщі з 2019 року. Спеціалізуємося на легалізації іноземців, відкритті та супроводі бізнесу, а також отриманні дозволів на роботу та посвідки на проживання. Гарантуємо індивідуальний підхід, точність і дотримання всіх юридичних норм.    </p>
+  </section>
+{% else %}
+  <section class="container py-5">
+    <h2 class="mb-4">Обо мне</h2>
+    <p class="fs-5">
+      Я предоставляю юридическую помощь в Польше с 2019 года. Специализируюсь на легализации иностранцев, открытии и сопровождении бизнеса, а также разрешениях на работу и ВНЖ. Гарантирую персональный подход, точность и соблюдение всех правовых норм.
+    </p>
+  </section>
+{% endif %}
+
+-->
 <section class="py-5" style="background-color: white;">
     <div class="container">
         <div class="row">
@@ -612,18 +635,7 @@
 <!-- CONTACT + MAP -->
 <section id="contact" class="py-5" style="background-color: var(--color-bg); color: var(--color-white);">
     <div class="container">
-        {% if LANGUAGE_CODE == 'pl' %}
-            <h2 class="text-center mb-5" data-aos="fade-up">{% trans "Kontakt" %}</h2>
-        {% elif LANGUAGE_CODE == 'en' %}
-            <h2 class="text-center mb-5" data-aos="fade-up">{% trans "Contact" %}</h2>
-        {% elif LANGUAGE_CODE == 'ru' %}
-            <h2 class="text-center mb-5" data-aos="fade-up">{% trans "Контакты" %}</h2>
-        {% elif LANGUAGE_CODE == 'uk' %}
-            <h2 class="text-center mb-5" data-aos="fade-up">{% trans "Контакти" %}</h2>
-        {% else %}
-            <h2 class="text-center mb-5" data-aos="fade-up">{% trans "Contact" %}</h2>
-        {% endif %}
-
+        <h2 class="text-center mb-5" data-aos="fade-up">{% trans "Контакты" %}</h2>
 
         <div class="row g-4 align-items-stretch">
 
@@ -631,7 +643,7 @@
             <div class="col-lg-6">
                 <div class="row g-4">
                     <div class="col-12" data-aos="fade-right">
-                        <div class="d-flex align-items-start p-4  rounded shadow h-100 about-text"
+                        <div class="d-flex align-items-start p-4 bg-dark rounded shadow h-100"
                              style="cursor: pointer; border-radius: 3%; border-left: 4px solid #A08A5D;">
                             <i class="bi bi-geo-alt-fill fs-3 text-warning me-3"></i>
                             <div>
@@ -642,7 +654,7 @@
                     </div>
 
                     <div class="col-12" data-aos="fade-up">
-                        <div class="d-flex align-items-start p-4 rounded shadow h-100 about-text"
+                        <div class="d-flex align-items-start p-4 bg-dark rounded shadow h-100"
                              style="cursor: pointer; border-radius: 3%; border-left: 4px solid #A08A5D;">
                             <i class="bi bi-telephone-fill fs-3 text-warning me-3"></i>
                             <div>
@@ -653,7 +665,7 @@
                     </div>
 
                     <div class="col-12" data-aos="fade-left">
-                        <div class="d-flex align-items-start p-4 rounded shadow h-100 about-text"
+                        <div class="d-flex align-items-start p-4 bg-dark rounded shadow h-100"
                              style="cursor: pointer; border-radius: 3%; border-left: 4px solid #A08A5D;">
                             <i class="bi bi-envelope-fill fs-3 text-warning me-3"></i>
                             <div>
