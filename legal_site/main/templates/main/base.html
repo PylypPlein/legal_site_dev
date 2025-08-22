@@ -203,6 +203,15 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
+    .services-text {
+      background: var(--color-bg); /* напівпрозорий фон */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .services-text:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
     .btn-custom-outline {
       color: #A08A5D;
       border-color: #A08A5D;
@@ -227,15 +236,21 @@
     {% else %}<a class="navbar-brand fw-bold" href="/">Main</a>{% endif %}
 
     <div class="d-flex align-items-center gap-3">
-      <a href="{{social_links.instagram}}" target="_blank" class="text-white text-decoration-none">
-        <i class="bi bi-instagram" style="font-size: 1.5rem;"></i>
-      </a>
-      <a href="https://t.me/yourchannel" target="_blank" class="text-white text-decoration-none">
-        <i class="bi bi-telegram" style="font-size: 1.5rem;"></i>
-      </a>
-      <a href="https://www.facebook.com" target="_blank" class="text-white text-decoration-none">
-        <i class="bi bi-facebook" style="font-size: 1.5rem;"></i>
-      </a>
+        {% if social_links.instagram is not None %}
+        <a href="{{social_links.instagram}}" target="_blank" class="text-white text-decoration-none">
+          <i class="bi bi-instagram" style="font-size: 1.5rem;"></i>
+        </a>
+        {% endif %}
+        {% if social_links.telegram is not None %}
+        <a href="{{social_links.telegram}}" target="_blank" class="text-white text-decoration-none">
+          <i class="bi bi-telegram" style="font-size: 1.5rem;"></i>
+        </a>
+        {% endif %}
+        {% if social_links.facebook is not None %}
+        <a href="{{social_links.facebook}}" target="_blank" class="text-white text-decoration-none">
+          <i class="bi bi-facebook" style="font-size: 1.5rem;"></i>
+        </a>
+        {% endif %}
 
       <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
         <i class="bi bi-list" style="font-size: 1.5rem;"></i>
@@ -256,23 +271,25 @@
     <div>
       <ul class="navbar-nav">
         {% if LANGUAGE_CODE == 'pl' %}
-          <li class="nav-item"><a class="nav-link text-gold" href="/about/">O nas</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#about/">O nas</a></li>
           <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Kontakt</a></li>
           <li class="nav-item"><a class="nav-link text-gold" href="/policy/">Polityka prywatności</a></li>
         {% elif LANGUAGE_CODE == 'en' %}
-          <li class="nav-item"><a class="nav-link text-gold" href="/about/">About us</a></li>
-          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Contacts</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#about/">About us</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Contacts</a></li>
           <li class="nav-item"><a class="nav-link text-gold" href="/policy/">Private policy</a></li>
         {% elif LANGUAGE_CODE == 'ru' %}
-          <li class="nav-item"><a class="nav-link text-gold" href="/about/">О нас</a></li>
-          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Контакты</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#about/">О нас</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Контакты</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/policy/">Политика</a></li>
         {% elif LANGUAGE_CODE == 'uk' %}
-          <li class="nav-item"><a class="nav-link text-gold" href="/about/">Про нас</a></li>
-          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Контакти</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#about/">Про нас</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Контакти</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/policy/">Політика</a></li>
         {% else %}
           <li class="nav-item"><a class="nav-link text-gold" href="/">Main</a></li>
-          <li class="nav-item"><a class="nav-link text-gold" href="/about/">About us</a></li>
-          <li class="nav-item"><a class="nav-link text-gold" href="/contact/">Contacts</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#about/">About us</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Contacts</a></li>
         {% endif %}
       </ul>
       <hr class="bg-light">

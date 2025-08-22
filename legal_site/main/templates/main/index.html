@@ -8,11 +8,10 @@
 
     .button-animated-white {
       font-family: 'Montserrat', sans-serif;
-      font-weight: var(--font-weight-6);
       font-size: var(--font-size-2);
-      color: var(--white-2);
+      color: white;
       background: transparent; /* brak wypełnienia */
-      border: var(--size-1) solid var(--gray-0); /* obramowanie */
+      border: 2px solid var(--gray-0);
       border-radius: 5px;
       padding: var(--size-1) var(--size-2);
       transform: translateY(calc(var(--y, 0) * 1%)) scale(var(--scale));
@@ -24,8 +23,8 @@
     .button-animated-white:hover {
       background: white;
       color: black;
-      --y: -10;
-      --scale: 1.1;
+      --y: -5;
+      --scale: 0.9;
       --border-scale: 1;
     }
 
@@ -41,7 +40,8 @@
       content: "";
       position: absolute;
       inset: calc(var(--size-3) * -1);
-      border: var(--size-2) solid var(--gray-0);
+      border: var(--size-1) solid var(--gray-0);
+      border-radius: 5px;
       transform: scale(var(--border-scale, 0));
       transition: transform 0.125s;
 
@@ -66,19 +66,20 @@
     }
     .gold-buttons-container {
       display: flex;
-      flex-wrap: wrap;     /* przyciski przejdą do nowego wiersza, jeśli zabraknie miejsca */
-      gap: 20px;           /* odstęp między przyciskami */
+      flex-wrap: wrap;
+      gap: 20px;
     }
     .button-animated-gold {
       font-family: 'Montserrat', sans-serif;
       font-weight: var(--font-weight-4);
       font-size: 17px;
       color: #A08A5D;
-      background: transparent; /* brak wypełnienia */
-      border: 3px solid #A08A5D; /* obramowanie */
+      background: transparent;
+      border: 1px solid var(--gray-0);
       border-radius: 10px;
       border-color: #A08A5D;
       padding: 10px 20px;
+      text-decoration: none;
       transform: translateY(calc(var(--y, 0) * 1%)) scale(var(--scale));
       transition: transform 0.1s;
       position: relative;
@@ -88,7 +89,7 @@
     .button-animated-gold:hover {
       background: #A08A5D;
       color: black;
-      --y: -10;
+      --y: -5;
       --scale: 0.9;
       --border-scale: 1;
     }
@@ -107,6 +108,7 @@
       inset: calc(var(--size-3) * -1);
       border: var(--size-1) solid var(--gray-0);
       border-color: #A08A5D;
+      border-radius: 5px;
       transform: scale(var(--border-scale, 0));
       transition: transform 0.125s;
 
@@ -185,10 +187,10 @@
 </section>
 
 {% if LANGUAGE_CODE == 'pl' %}
-<section class="container py-5">
+<section id="about" class="container py-5">
     <div class="row">
-        <div class="col-lg-8" data-aos="fade-right">
-            <div class="about-text p-4 rounded shadow-lg">
+        <div class="col-lg-8">
+            <div class="about-text p-4 rounded shadow-lg" data-aos="fade-right">
                 <h2 class="mb-4 fw-bold" style="color: #A08A5D;">O nas</h2>
                 <p class="fs-5 text-light">
                     Świadczymy pomoc prawną w Polsce od 2019 roku. Specjalizujemy się w legalizacji pobytu cudzoziemców,
@@ -198,18 +200,18 @@
             </div>
             <div class="mt-4">
                 <div class="gold-buttons-container">
-                    <button type="button" class="button-animated-gold">
+                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-briefcase me-2"></i>Usługi
-                    </button>
-                    <button type="button" class="button-animated-gold">
+                    </a>
+                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-people me-2"></i>Nasz zespół
-                    </button>
-                    <button type="button" class="button-animated-gold">
+                    </a>
+                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-envelope me-2"></i>Kontakt
-                    </button>
+                    </a>
                     {% if not isBlackListed %}
                     <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'">
+                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
                         <i class="bi bi-envelope me-2"></i>Oferty pracy
                     </button>
                     {% endif %}
@@ -228,10 +230,10 @@
 </section>
 
 {% elif LANGUAGE_CODE == 'en' %}
-<section class="container py-5">
-    <div class="row " data-aos="fade-right">
+<section id="about" class="container py-5">
+    <div class="row ">
         <div class="col-lg-8">
-            <div class="about-text p-4 rounded shadow-lg">
+            <div class="about-text p-4 rounded shadow-lg" data-aos="fade-right">
                 <h2 class="mb-4 fw-bold" style="color: #A08A5D;">About us</h2>
                 <p class="fs-5 text-light">
                     We have been providing legal assistance in Poland since 2019. Our expertise includes the
@@ -242,18 +244,18 @@
             </div>
             <div class="mt-4">
                 <div class="gold-buttons-container">
-                    <button type="button" class="button-animated-gold">
+                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-briefcase me-2"></i>Services
-                    </button>
-                    <button type="button" class="button-animated-gold">
+                    </a>
+                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-people me-2"></i>Our team
-                    </button>
-                    <button type="button" class="button-animated-gold">
+                    </a>
+                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-envelope me-2"></i>Contact
-                    </button>
+                    </a>
                     {% if not isBlackListed %}
                     <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'">
+                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
                         <i class="bi bi-envelope me-2"></i>Job offers
                     </button>
                     {% endif %}
@@ -272,10 +274,10 @@
 </section>
 
 {% elif LANGUAGE_CODE == 'ru' %}
-<section class="container py-5">
+<section id="about" class="container py-5">
     <div class="row ">
-        <div class="col-lg-8" data-aos="fade-right">
-            <div class="about-text p-4 rounded shadow-lg">
+        <div class="col-lg-8">
+            <div class="about-text p-4 rounded shadow-lg" data-aos="fade-right">
                 <h2 class="mb-4 fw-bold" style="color: #A08A5D;">О нас</h2>
                 <p class="fs-5 text-light">
                     Я предоставляю юридическую помощь в Польше с 2019 года. Специализируюсь на легализации иностранцев,
@@ -285,18 +287,18 @@
             </div>
             <div class="mt-4">
                 <div class="gold-buttons-container">
-                    <button type="button" class="button-animated-gold">
+                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-briefcase me-2"></i>Услуги
-                    </button>
-                    <button type="button" class="button-animated-gold">
+                    </a>
+                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-people me-2"></i>Штат
-                    </button>
-                    <button type="button" class="button-animated-gold">
+                    </a>
+                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-envelope me-2"></i>Контакт
-                    </button>
+                    </a>
                     {% if not isBlackListed %}
                     <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'">
+                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
                         <i class="bi bi-envelope me-2"></i>Вакансии
                     </button>
                     {% endif %}
@@ -315,11 +317,11 @@
 </section>
 
 {% elif LANGUAGE_CODE == 'uk' %}
-<section class="container py-5">
+<section id="about" class="container py-5">
     <div class="row">
-        <div class="col-lg-9" data-aos="fade-right">
-            <div class="about-text p-4 rounded shadow-lg">
-                <h2 class="mb-4">Про нас</h2>
+        <div class="col-lg-9">
+            <div class="about-text p-4 rounded shadow-lg" data-aos="fade-right">
+                <h2 class="mb-4 fw-bold" style="color: #A08A5D;">Про нас</h2>
                 <hr>
                 <p class="fs-5 text-light">
                     Ми надаємо юридичну допомогу в Польщі з 2019 року. Спеціалізуємося на легалізації іноземців,
@@ -330,18 +332,18 @@
             </div>
             <div class="mt-4">
                 <div class="gold-buttons-container">
-                    <button type="button" class="button-animated-gold">
+                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-briefcase me-2"></i>Послуги
-                    </button>
-                    <button type="button" class="button-animated-gold">
+                    </a>
+                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-people me-2"></i>Штат
-                    </button>
-                    <button type="button" class="button-animated-gold">
+                    </a>
+                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
                         <i class="bi bi-envelope me-2"></i>Контакт
-                    </button>
+                    </a>
                     {% if not isBlackListed %}
                     <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'">
+                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
                         <i class="bi bi-envelope me-2"></i>Вакансії
                     </button>
                     {% endif %}
@@ -358,7 +360,7 @@
 </section>
 
 {% else %}
-<section class="container py-5">
+<section id="about" class="container py-5">
     <div class="row align-items-center">
         <div class="col-lg-6">
             <div class="about-text p-4 rounded shadow-lg">
@@ -383,11 +385,11 @@
 </section>
 {% endif %}
 
-<section class="py-5" style="background-color: white;">
+<section id="services" class="py-5" style="background-color: white;">
     <div class="container">
         <div class="row">
             <!-- Ліва частина: заголовок + опис -->
-            <div class="col-md-8 text-black">
+            <div class="col-md-8 text-black" data-aos="fade-right">
                 {% if LANGUAGE_CODE == 'pl' %}
                 <h2 class="fw-bold mb-2">{% trans "Usługi" %}</h2>
                 {% elif LANGUAGE_CODE == 'en' %}
@@ -411,7 +413,7 @@
                 <div class="list-group shadow-sm">
                     {% for service in services %}
 
-                    <button class="list-group-item list-group-item-action d-flex align-items-center bg-dark text-light p-3 rounded-2 shadow-lg"
+                    <button data-aos="fade-left" class="services-text list-group-item list-group-item-action d-flex align-items-center text-light p-3 rounded-2 shadow-lg"
                             style="cursor: pointer; border-radius: 3%; border-right: 4px solid #A08A5D;"
                             data-description="{% if LANGUAGE_CODE == 'pl' %}
                                       {{ service.description_pl }}
@@ -424,7 +426,7 @@
                                     {% else %}
                                       {{ service.description_en }}
                                     {% endif %}">
-            <span class="me-3" style="font-size: 1.3rem; color: var(--bs-warning);">
+            <span class="me-3" style="font-size: 1.3rem; color: var(--bs-warning);" >
               <i class="bi bi-briefcase-fill" style="color: #A08A5D;"></i>
             </span>
                         <span>
@@ -466,22 +468,22 @@
     <h2 class="mb-4 text-center" data-aos="fade-up">Dlaczego warto nas wybrać</h2>
     <div class="row text-center">
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-            <i class="bi bi-award fs-1 text-danger"></i>
+            <i class="bi bi-award fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Doświadczenie od 2019</h5>
             <p>Ponad 5 lat praktyki prawnej w Polsce</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-            <i class="bi bi-shield-check fs-1 text-danger"></i>
+            <i class="bi bi-shield-check fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Niezawodność</h5>
             <p>Pracuję na podstawie umowy, udzielam gwarancji</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-            <i class="bi bi-clock-history fs-1 text-danger"></i>
+            <i class="bi bi-clock-history fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Skuteczność</h5>
             <p>Szybkie składanie wniosków i obsługa</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
-            <i class="bi bi-translate fs-1 text-danger"></i>
+            <i class="bi bi-translate fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Rosyjski / Polski</h5>
             <p>Komunikacja bez barier językowych</p>
         </div>
@@ -493,22 +495,22 @@
     <h2 class="mb-4 text-center">Why Choose us</h2>
     <div class="row text-center">
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-            <i class="bi bi-award fs-1 text-danger"></i>
+            <i class="bi bi-award fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Experience Since 2019</h5>
             <p>Over 5 years of legal practice in Poland</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-            <i class="bi bi-shield-check fs-1 text-danger"></i>
+            <i class="bi bi-shield-check fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Reliability</h5>
             <p>I work under contract and provide guarantees</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-            <i class="bi bi-clock-history fs-1 text-danger"></i>
+            <i class="bi bi-clock-history fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Efficiency</h5>
             <p>Prompt submission and full support</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
-            <i class="bi bi-translate fs-1 text-danger"></i>
+            <i class="bi bi-translate fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Russian / Polish</h5>
             <p>Communication without language barriers</p>
         </div>
@@ -519,22 +521,22 @@
     <h2 class="mb-4 text-center">Чому обирають нас</h2>
     <div class="row text-center">
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-            <i class="bi bi-award fs-1 text-danger"></i>
+            <i class="bi bi-award fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Досвід з 2019 року</h5>
             <p>Понад 5 років юридичної практики в Польщі</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-            <i class="bi bi-shield-check fs-1 text-danger"></i>
+            <i class="bi bi-shield-check fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Надійність</h5>
             <p>Працюю за договором, надаю гарантії</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-            <i class="bi bi-clock-history fs-1 text-danger"></i>
+            <i class="bi bi-clock-history fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Ефективність</h5>
             <p>Оперативна подача та супровід</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
-            <i class="bi bi-translate fs-1 text-danger"></i>
+            <i class="bi bi-translate fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Російська / Польська</h5>
             <p>Спілкування без мовного бар’єру</p>
         </div>
@@ -545,22 +547,22 @@
     <h2 class="mb-4 text-center">Почему выбирают нас</h2>
     <div class="row text-center">
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-            <i class="bi bi-award fs-1 text-danger"></i>
+            <i class="bi bi-award fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Опыт с 2019</h5>
             <p>Более 5 лет юридической практики в Польше</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-            <i class="bi bi-shield-check fs-1 text-danger"></i>
+            <i class="bi bi-shield-check fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Надёжность</h5>
             <p>Работаю по договору, предоставляю гарантии</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-            <i class="bi bi-clock-history fs-1 text-danger"></i>
+            <i class="bi bi-clock-history fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Эффективность</h5>
             <p>Оперативная подача и сопровождение</p>
         </div>
         <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
-            <i class="bi bi-translate fs-1 text-danger"></i>
+            <i class="bi bi-translate fs-1" style="color: #A08A5D;"></i>
             <h5 class="mt-3">Русский / Польский</h5>
             <p>Общение без языкового барьера</p>
         </div>
@@ -569,7 +571,7 @@
 {% endif %}
 
 <!-- Swiper контейнер -->
-<div class="swiper teamSwiper container py-5">
+<div id="we_are" class="swiper teamSwiper container py-5">
     <div class="swiper-wrapper">
 
         {% for employee in employees %}
@@ -633,7 +635,7 @@
                     <div class="col-12" data-aos="fade-right">
                         <div class="d-flex align-items-start p-4  rounded shadow h-100 about-text"
                              style="cursor: pointer; border-radius: 3%; border-left: 4px solid #A08A5D;">
-                            <i class="bi bi-geo-alt-fill fs-3 text-warning me-3"></i>
+                            <i class="bi bi-geo-alt-fill fs-3 me-3" style="color: white;"></i>
                             <div>
                                 <h5 class="mb-1">{{company.miasto}}</h5>
                                 <p class="mb-0">{{company.adres}}</p>
@@ -644,7 +646,7 @@
                     <div class="col-12" data-aos="fade-up">
                         <div class="d-flex align-items-start p-4 rounded shadow h-100 about-text"
                              style="cursor: pointer; border-radius: 3%; border-left: 4px solid #A08A5D;">
-                            <i class="bi bi-telephone-fill fs-3 text-warning me-3"></i>
+                            <i class="bi bi-telephone-fill fs-3 me-3" style="color: white;"></i>
                             <div>
                                 <h5 class="mb-1">{{company.telefon_legalizacja}}</h5>
                                 <p class="mb-0">{% trans "Телефон" %}</p>
@@ -655,7 +657,7 @@
                     <div class="col-12" data-aos="fade-left">
                         <div class="d-flex align-items-start p-4 rounded shadow h-100 about-text"
                              style="cursor: pointer; border-radius: 3%; border-left: 4px solid #A08A5D;">
-                            <i class="bi bi-envelope-fill fs-3 text-warning me-3"></i>
+                            <i class="bi bi-envelope-fill fs-3 me-3" style="color: white;"></i>
                             <div>
                                 <h5 class="mb-1">{{company.email}}</h5>
                                 <p class="mb-0">{% trans "Email" %}</p>
