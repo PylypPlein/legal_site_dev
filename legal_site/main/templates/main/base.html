@@ -187,7 +187,7 @@
     @media (max-width: 768px) {
       .video-small {
         width: 100%;  /* займає всю ширину контейнера */
-        max-height: 400px; /* можна обмежити висоту */
+        max-height: 650px; /* можна обмежити висоту */
         object-fit: cover; /* щоб відео добре вписувалося */
         margin-top: 20px;  /* відступ зверху */
       }
@@ -231,6 +231,7 @@
   <div class="container d-flex justify-content-between align-items-center">
     {% if LANGUAGE_CODE == 'pl' %}<a class="navbar-brand fw-bold" href="/">Strona główna</a>
     {% elif LANGUAGE_CODE == 'en' %}<a class="navbar-brand fw-bold" href="/">Main</a>
+    {% elif LANGUAGE_CODE == 'es' %}<a class="navbar-brand fw-bold" href="/">Inicio</a>
     {% elif LANGUAGE_CODE == 'ru' %}<a class="navbar-brand fw-bold" href="/">Главная</a>
     {% elif LANGUAGE_CODE == 'uk' %}<a class="navbar-brand fw-bold" href="/">Головна</a>
     {% else %}<a class="navbar-brand fw-bold" href="/">Main</a>{% endif %}
@@ -274,10 +275,10 @@
           <li class="nav-item"><a class="nav-link text-gold" href="/#about/">O nas</a></li>
           <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Kontakt</a></li>
           <li class="nav-item"><a class="nav-link text-gold" href="/policy/">Polityka prywatności</a></li>
-        {% elif LANGUAGE_CODE == 'en' %}
-          <li class="nav-item"><a class="nav-link text-gold" href="/#about/">About us</a></li>
-          <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Contacts</a></li>
-          <li class="nav-item"><a class="nav-link text-gold" href="/policy/">Private policy</a></li>
+        {% elif LANGUAGE_CODE == 'es' %}
+          <li class="nav-item"><a class="nav-link text-gold" href="/#about/">Sobre nosotros</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="/policy/">Política de privacidad</a></li>
         {% elif LANGUAGE_CODE == 'ru' %}
           <li class="nav-item"><a class="nav-link text-gold" href="/#about/">О нас</a></li>
           <li class="nav-item"><a class="nav-link text-gold" href="/#contact">Контакты</a></li>
@@ -304,6 +305,7 @@
           <ul class="dropdown-menu dropdown-menu-dark">
             <li><button class="dropdown-item" type="submit" name="language" value="pl">🇵🇱 Polski</button></li>
             <li><button class="dropdown-item" type="submit" name="language" value="en">🇬🇧 English</button></li>
+            <li><button class="dropdown-item" type="submit" name="language" value="es">🇪🇸 Español</button></li>
             <li><button class="dropdown-item" type="submit" name="language" value="uk">🇺🇦 Українська</button></li>
             <li><button class="dropdown-item" type="submit" name="language" value="ru">🇷🇺 Русский</button></li>
           </ul>

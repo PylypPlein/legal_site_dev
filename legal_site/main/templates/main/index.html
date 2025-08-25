@@ -164,22 +164,27 @@
             Book a consultation
         </button>-->
         <button class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">Book a consultation</button>
+        {% elif LANGUAGE_CODE == 'es' %}
+            <p class="lead text-light">Abogado de derecho migratorio y empresarial en Polonia</p>
+            <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
+                Reservar una consulta
+            </button>
         {% elif LANGUAGE_CODE == 'ru' %}
-        <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
-        <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
-            Записаться на консультацию
-        </button>
+            <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
+            <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
+                Записаться на консультацию
+            </button>
         {% elif LANGUAGE_CODE == 'uk' %}
-        <p class="lead text-light">Юрист з міграційного та бізнес-права в Польщі</p>
-        <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
-            Записатися на консультацію
-        </button>
+            <p class="lead text-light">Юрист з міграційного та бізнес-права в Польщі</p>
+            <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
+                Записатися на консультацію
+            </button>
         {% else %}
-        <h1 class="display-5 fw-bold text-white">Легалайз Пример</h1>
-        <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
-        <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
-            Записаться на консультацию
-        </button>
+            <h1 class="display-5 fw-bold text-white">Легалайз Пример</h1>
+            <p class="lead text-light">Юрист по миграционному и бизнес-праву в Польше</p>
+            <button type="button" class="button-animated-white" data-bs-toggle="modal" data-bs-target="#contactModal">
+                Записаться на консультацию
+            </button>
         {% endif %}
 
 
@@ -269,6 +274,48 @@
                 Your browser does not support the video tag.
             </video>
 
+        </div>
+    </div>
+</section>
+
+{% elif LANGUAGE_CODE == 'es' %}
+<section id="about" class="container py-5">
+    <div class="row ">
+        <div class="col-lg-8">
+            <div class="about-text p-4 rounded shadow-lg" data-aos="fade-right">
+                <h2 class="mb-4 fw-bold" style="color: #A08A5D;">Sobre nosotros</h2>
+                <p class="fs-5 text-light">
+                    Brindamos asistencia legal en Polonia desde 2019. Nuestra experiencia incluye la legalización de extranjeros,
+                    el registro y apoyo a empresas, así como la obtención de permisos de trabajo y tarjetas de residencia.
+                    Garantizamos un enfoque personalizado, precisión y pleno cumplimiento de las normativas legales.
+                </p>
+            </div>
+            <div class="mt-4">
+                <div class="gold-buttons-container">
+                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
+                        <i class="bi bi-briefcase me-2"></i>Servicios
+                    </a>
+                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
+                        <i class="bi bi-people me-2"></i>Nuestro equipo
+                    </a>
+                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
+                        <i class="bi bi-envelope me-2"></i>Contacto
+                    </a>
+                    {% if not isBlackListed %}
+                    <button type="button" class="button-animated-gold"
+                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
+                        <i class="bi bi-envelope me-2"></i>Ofertas de trabajo
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4" data-aos="fade-left">
+            <video class="video-small" autoplay muted playsinline loop>
+                <source src="{% static 'main/video/video.mp4' %}" type="video/mp4">
+                Tu navegador no admite la etiqueta de video.
+            </video>
         </div>
     </div>
 </section>
@@ -516,6 +563,34 @@
         </div>
     </div>
 </section>
+
+{% elif LANGUAGE_CODE == 'es' %}
+<section class="container py-5">
+    <h2 class="mb-4 text-center">Por qué elegirnos</h2>
+    <div class="row text-center">
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <i class="bi bi-award fs-1" style="color: #A08A5D;"></i>
+            <h5 class="mt-3">Experiencia desde 2019</h5>
+            <p>Más de 5 años de práctica legal en Polonia</p>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <i class="bi bi-shield-check fs-1" style="color: #A08A5D;"></i>
+            <h5 class="mt-3">Fiabilidad</h5>
+            <p>Trabajo bajo contrato y ofrezco garantías</p>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <i class="bi bi-clock-history fs-1" style="color: #A08A5D;"></i>
+            <h5 class="mt-3">Eficiencia</h5>
+            <p>Presentación rápida y apoyo completo</p>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+            <i class="bi bi-translate fs-1" style="color: #A08A5D;"></i>
+            <h5 class="mt-3">Ruso / Polaco</h5>
+            <p>Comunicación sin barreras lingüísticas</p>
+        </div>
+    </div>
+</section>
+
 {% elif LANGUAGE_CODE == 'uk' %}
 <section class="container py-5">
     <h2 class="mb-4 text-center">Чому обирають нас</h2>
@@ -649,7 +724,15 @@
                             <i class="bi bi-telephone-fill fs-3 me-3" style="color: white;"></i>
                             <div>
                                 <h5 class="mb-1">{{company.telefon_legalizacja}}</h5>
-                                <p class="mb-0">{% trans "Телефон" %}</p>
+                                <p class="mb-0">
+                                    {% if LANGUAGE_CODE == 'pl' %}{% trans "Telefon" %}
+                                    {% elif LANGUAGE_CODE == 'en' %}{% trans "Telephone" %}
+                                    {% elif LANGUAGE_CODE == 'es' %}{% trans "Telephone" %}
+                                    {% elif LANGUAGE_CODE == 'ru' %}{% trans "Телефон" %}
+                                    {% elif LANGUAGE_CODE == 'uk' %}{% trans "Телефон" %}
+                                    {% else %}{% trans "Телефон" %}
+                                    {% endif %}
+                                    </p>
                             </div>
                         </div>
                     </div>
@@ -722,6 +805,8 @@
                         Umów się na konsultację
                         {% elif LANGUAGE_CODE == 'en' %}
                         Book a Consultation
+                        {% elif LANGUAGE_CODE == 'es' %}
+                        Reservar una consulta
                         {% elif LANGUAGE_CODE == 'ru' %}
                         Запись на консультацию
                         {% elif LANGUAGE_CODE == 'uk' %}
@@ -731,7 +816,7 @@
                         {% endif %}
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="{% if LANGUAGE_CODE == 'pl' %}Zamknij{% elif LANGUAGE_CODE == 'en' %}Close{% elif LANGUAGE_CODE == 'ru' %}Закрыть{% elif LANGUAGE_CODE == 'uk' %}Закрити{% else %}Закрыть{% endif %}">
+                            aria-label="{% if LANGUAGE_CODE == 'pl' %}Zamknij{% elif LANGUAGE_CODE == 'en' %}Close{% elif LANGUAGE_CODE == 'es' %}Cerrar{% elif LANGUAGE_CODE == 'ru' %}Закрыть{% elif LANGUAGE_CODE == 'uk' %}Закрити{% else %}Закрыть{% endif %}">
                     </button>
                 </div>
 
@@ -740,14 +825,18 @@
                     <div class="row g-4">
 
                         <div class="col-md-6">
-                            <label for="name" class="form-label fw-semibold">{% trans "Имя" %}</label>
+                            <label for="name" class="form-label fw-semibold">
+                                {% if LANGUAGE_CODE == 'es' %}Nombre{% else %}{% trans "Имя" %}{% endif %}
+                            </label>
                             <input type="text"
                                    class="form-control text-white bg-dark-800 custom-border rounded-3 shadow-sm"
                                    id="name" name="name" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="phone" class="form-label fw-semibold">{% trans "Телефон" %}</label>
+                            <label for="phone" class="form-label fw-semibold">
+                                {% if LANGUAGE_CODE == 'es' %}Teléfono{% else %}{% trans "Телефон" %}{% endif %}
+                            </label>
                             <input type="tel"
                                    class="form-control text-white bg-dark-800 custom-border rounded-3 shadow-sm"
                                    id="phone" name="phone"
@@ -755,23 +844,31 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="email" class="form-label fw-semibold">{% trans "Электронная почта" %}</label>
+                            <label for="email" class="form-label fw-semibold">
+                                {% if LANGUAGE_CODE == 'es' %}Correo electrónico{% else %}{% trans "Электронная почта" %}{% endif %}
+                            </label>
                             <input type="email"
                                    class="form-control text-white bg-dark-800 custom-border rounded-3 shadow-sm"
                                    id="email" name="email" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="service" class="form-label fw-semibold">{% trans "Выберите услугу" %}</label>
+                            <label for="service" class="form-label fw-semibold">
+                                {% if LANGUAGE_CODE == 'es' %}Elige un servicio{% else %}{% trans "Выберите услугу" %}{% endif %}
+                            </label>
                             <select class="form-select text-white bg-dark-800 custom-border rounded-3 shadow-sm"
                                     id="service" name="service" required>
-                                <option value="" disabled selected>{% trans "Выберите услугу" %}</option>
+                                <option value="" disabled selected>
+                                    {% if LANGUAGE_CODE == 'es' %}Elige un servicio{% else %}{% trans "Выберите услугу" %}{% endif %}
+                                </option>
                                 {% for service in services %}
                                 <option value="{{ service.id }}">
                                     {% if LANGUAGE_CODE == 'pl' %}
                                     {{ service.name_pl }}
                                     {% elif LANGUAGE_CODE == 'en' %}
                                     {{ service.name_en }}
+                                    {% elif LANGUAGE_CODE == 'es' %}
+                                    {{ service.name_es }}
                                     {% elif LANGUAGE_CODE == 'ru' %}
                                     {{ service.name_ru }}
                                     {% elif LANGUAGE_CODE == 'uk' %}
@@ -785,13 +882,15 @@
                         </div>
 
                         <div class="col-12">
-                            <label for="message" class="form-label fw-semibold">{% trans "Сообщение" %}</label>
+                            <label for="message" class="form-label fw-semibold">
+                                {% if LANGUAGE_CODE == 'es' %}Mensaje{% else %}{% trans "Сообщение" %}{% endif %}
+                            </label>
                             <textarea class="form-control text-white bg-dark-800 custom-border rounded-3 shadow-sm"
                                       id="message" name="message"
                                       rows="4" placeholder="..." style="resize: none;"></textarea>
                         </div>
 
-                        <!-- Checkbox політики -->
+                        <!-- Checkbox политики -->
                         <div class="col-12 mt-2">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="accepted" id="policyConsent"
@@ -803,6 +902,9 @@
                                     {% elif LANGUAGE_CODE == 'en' %}
                                     I agree to the <a href="{% url 'policy' %}" target="_blank"
                                                       class="text-decoration-underline text-white">privacy policy</a>
+                                    {% elif LANGUAGE_CODE == 'es' %}
+                                    Acepto la <a href="{% url 'policy' %}" target="_blank"
+                                                 class="text-decoration-underline text-white">política de privacidad</a>
                                     {% elif LANGUAGE_CODE == 'ru' %}
                                     Я соглашаюсь с <a href="{% url 'policy' %}" target="_blank"
                                                       class="text-decoration-underline text-white">политикой
@@ -826,17 +928,31 @@
                 <!-- Подвал -->
                 <div class="modal-footer rounded-bottom-4 border-top custom-border bg-black d-flex justify-content-end gap-2">
                     <button type="button" class="btn custom-gold-outline" data-bs-dismiss="modal">
-                        {% trans "Отмена" %}
+                        {% if LANGUAGE_CODE == 'pl' %}Anuluj
+                        {% elif LANGUAGE_CODE == 'en' %}Cancel
+                        {% elif LANGUAGE_CODE == 'es' %}Cancelar
+                        {% elif LANGUAGE_CODE == 'ru' %}Отмена
+                        {% elif LANGUAGE_CODE == 'uk' %}Скасувати
+                        {% else %}Cancel
+                        {% endif %}
                     </button>
                     <button type="submit" class="btn custom-gold fw-bold">
-                        {% trans "Отправить" %}
+                        {% if LANGUAGE_CODE == 'pl' %}Wyślij
+                        {% elif LANGUAGE_CODE == 'en' %}Send
+                        {% elif LANGUAGE_CODE == 'es' %}Enviar
+                        {% elif LANGUAGE_CODE == 'ru' %}Отправить
+                        {% elif LANGUAGE_CODE == 'uk' %}Надіслати
+                        {% else %}Send
+                        {% endif %}
                     </button>
                 </div>
+
 
             </form>
         </div>
     </div>
 </div>
+
 
 
 <!-- Swiper JS -->
