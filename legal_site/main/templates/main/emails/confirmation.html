@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if LANGUAGE_CODE == 'ru' %}Подтверждение записи{% elif LANGUAGE_CODE == 'pl' %}Potwierdzenie zapisania{% elif LANGUAGE_CODE == 'en' %}Confirmation{% elif LANGUAGE_CODE == 'uk' %}Підтвердження{% else %}Confirmation{% endif %}</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            color: #0F0F0F;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            color: #A08A5D;
+        }
+        .content {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            text-align: center;
+            color: #888;
+        }
+        a.button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #A08A5D;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a.button:hover {
+            background-color: #E1C88A;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="header">
+            {% if LANGUAGE_CODE == 'ru' %}Спасибо за вашу заявку{% elif LANGUAGE_CODE == 'pl' %}Dziękujemy za zgłoszenie{% elif LANGUAGE_CODE == 'en' %}Thank you for your request{% elif LANGUAGE_CODE == 'uk' %}Дякуємо за заявку{% else %}Thank you{% endif %}
+        </h2>
+
+        <div class="content">
+            {% if LANGUAGE_CODE == 'ru' %}
+                <p>Здравствуйте, {{ contact.name }}!</p>
+                <p>Мы получили вашу заявку на консультацию. Наш менеджер свяжется с вами по телефону: {{ contact.phone }} или на email: {{ contact.email }}.</p>
+            {% elif LANGUAGE_CODE == 'pl' %}
+                <p>Witaj, {{ contact.name }}!</p>
+                <p>Otrzymaliśmy Twoje zgłoszenie na konsultację. Nasz konsultant skontaktuje się z Tobą pod numerem: {{ contact.phone }} lub na email: {{ contact.email }}.</p>
+            {% elif LANGUAGE_CODE == 'en' %}
+                <p>Hello, {{ contact.name }}!</p>
+                <p>We have received your consultation request. Our manager will contact you via phone: {{ contact.phone }} or email: {{ contact.email }}.</p>
+            {% elif LANGUAGE_CODE == 'uk' %}
+                <p>Привіт, {{ contact.name }}!</p>
+                <p>Ми отримали вашу заявку на консультацію. Наш менеджер зв’яжеться з вами по телефону: {{ contact.phone }} або на email: {{ contact.email }}.</p>
+            {% endif %}
+
+            <p>{% if LANGUAGE_CODE == 'ru' %}Спасибо за обращение!{% elif LANGUAGE_CODE == 'pl' %}Dziękujemy za kontakt!{% elif LANGUAGE_CODE == 'en' %}Thank you for reaching out!{% elif LANGUAGE_CODE == 'uk' %}Дякуємо за звернення!{% endif %}</p>
+        </div>
+
+        <div class="footer">
+            &copy; 2025 Visa Project
+        </div>
+    </div>
+</body>
+</html>

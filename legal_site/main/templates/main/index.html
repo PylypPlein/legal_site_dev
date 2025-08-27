@@ -720,6 +720,31 @@
     <div class="swiper-button-prev" style="color: var(--color-text-gold);"></div>
 </div>
 
+<section id="google-reviews">
+  <h2>Opinie z Google</h2>
+  {% if google_name %}
+    <h3>{{ google_name }}</h3>
+    <p>Adres: {{ google_address }}</p>
+    <p>Średnia ocena: {{ google_rating }}</p>
+    {% if google_reviews %}
+      <div class="reviews-list">
+        {% for r in google_reviews %}
+          <div class="review">
+            <img src="{{ r.profile_photo_url }}" alt="{{ r.author_name }}" width="40">
+            <strong>{{ r.author_name }}</strong> – ★{{ r.rating }}
+            <p>{{ r.text }}</p>
+            <small>{{ r.relative_time_description }}</small>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>Brak dostępnych opinii.</p>
+    {% endif %}
+  {% else %}
+    <p>Nie udało się pobrać danych Google.</p>
+  {% endif %}
+</section>
+
 
 <!-- CONTACT -->
 <!-- CONTACT + MAP -->
