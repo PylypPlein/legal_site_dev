@@ -3,9 +3,30 @@ from .models import Service, Employee, Firma, SocialLink, PrivacyPolicySection, 
 from .models import JobOffer
 from .models import BlacklistedCountry, ContactRequest, Service
 
+from django.contrib import admin
+from .models import ServiceClass, Service
+
+
+@admin.register(ServiceClass)
+class ServiceClassAdmin(admin.ModelAdmin):
+    list_display = ("id", "name_pl", "name_en", "name_ru", "name_ua", "name_es")
+    search_fields = ("name_pl", "name_en", "name_ru", "name_ua", "name_es")
+    list_filter = ("name_pl",)  # możesz filtrować po polskiej nazwie
+    ordering = ("id",)
+    # fields określa kolejność w formularzu edycji
+    fields = (
+        "name_pl", "name_en", "name_ru", "name_ua", "name_es",
+        "description_pl", "description_en", "description_ru",
+        "description_ua", "description_es",
+    )
+
+
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('name_ru', 'name_en', 'name_pl', 'name_ua')
+    list_display = ("id", "name_pl", "service_class")
+    list_filter = ("service_class",)
+    search_fields = ("name_pl", "name_en", "name_ru", "name_ua", "name_es")
+    ordering = ("id",)
 
 
 @admin.register(Employee)

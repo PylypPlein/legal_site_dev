@@ -10,19 +10,50 @@ class ContactMessage(models.Model):
         return f"Сообщение от {self.name}"
 
 
-class Service(models.Model):
-    name_pl = models.CharField("Название услуги (PL)", max_length=200)
-    name_en = models.CharField("Название услуги (EN)", max_length=200)
-    name_ru = models.CharField("Название услуги (RU)", max_length=200)
-    name_ua = models.CharField("Название услуги (UA)", max_length=200)
+from django.db import models
 
-    description_pl = models.TextField("Описание услуги (PL)")
-    description_en = models.TextField("Описание услуги (EN)")
-    description_ru = models.TextField("Описание услуги (RU)")
-    description_ua = models.TextField("Описание услуги (UA)")
+class ServiceClass(models.Model):
+    name_pl = models.CharField("Nazwa klasy (PL)", max_length=200)
+    name_en = models.CharField("Nazwa klasy (EN)", max_length=200)
+    name_ru = models.CharField("Nazwa klasy (RU)", max_length=200)
+    name_ua = models.CharField("Nazwa klasy (UA)", max_length=200)
+    name_es = models.CharField("Nazwa klasy (ES)", max_length=200)
+
+    description_pl = models.TextField("Opis klasy (PL)", blank=True, null=True)
+    description_en = models.TextField("Opis klasy (EN)", blank=True, null=True)
+    description_ru = models.TextField("Opis klasy (RU)", blank=True, null=True)
+    description_ua = models.TextField("Opis klasy (UA)", blank=True, null=True)
+    description_es = models.TextField("Opis klasy (ES)", blank=True, null=True)
 
     def __str__(self):
         return self.name_pl
+
+
+class Service(models.Model):
+    service_class = models.ForeignKey(
+        ServiceClass,
+        on_delete=models.CASCADE,
+        related_name="services",
+        verbose_name="Klasa usług",
+        null = True,
+        blank = True
+    )
+
+    name_pl = models.CharField("Nazwa usługi (PL)", max_length=200)
+    name_en = models.CharField("Nazwa usługi (EN)", max_length=200)
+    name_ru = models.CharField("Nazwa usługi (RU)", max_length=200)
+    name_ua = models.CharField("Nazwa usługi (UA)", max_length=200)
+    name_es = models.CharField("Nazwa usługi (ES)", max_length=200)
+
+    description_pl = models.TextField("Opis usługi (PL)")
+    description_en = models.TextField("Opis usługi (EN)")
+    description_ru = models.TextField("Opis usługi (RU)")
+    description_ua = models.TextField("Opis usługi (UA)")
+    description_es = models.TextField("Opis usługi (ES)")
+
+    def __str__(self):
+        return self.name_pl
+
 
 class Employee(models.Model):
     first_name = models.CharField("Имя", max_length=100)

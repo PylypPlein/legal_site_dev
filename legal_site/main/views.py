@@ -3,7 +3,7 @@ from .models import Service
 # Create your views here.
 from django.shortcuts import render, redirect
 from .forms import ContactRequestForm
-from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection, JobOffer, BlacklistedCountry
+from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection, JobOffer, BlacklistedCountry,ServiceClass
 from ipware import get_client_ip
 # views.py
 from django.shortcuts import render, redirect
@@ -13,6 +13,7 @@ from django.urls import reverse
 from django.contrib import messages
 
 def index(request):
+    service_classes = ServiceClass.objects.prefetch_related("services").all()
     services = Service.objects.all()
     employees = Employee.objects.all()
     company = Firma.objects.first()
@@ -28,6 +29,7 @@ def index(request):
             'company': company,
             'social_links': social_links,
             'isBlackListed': getattr(request, "is_blacklisted", False),
+            'service_classes': service_classes,
         }
     )
 
