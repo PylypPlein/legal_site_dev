@@ -70,9 +70,14 @@
       gap: 20px;
     }
     .button-animated-gold {
+      width: 190px;   /* szerokość */
+      height: 60px;   /* wysokość */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       font-family: 'Montserrat', sans-serif;
       font-weight: var(--font-weight-4);
-      font-size: 17px;
+      font-size: 15px;
       color: #A08A5D;
       background: transparent;
       border: 1px solid var(--gray-0);
@@ -720,30 +725,203 @@
     <div class="swiper-button-prev" style="color: var(--color-text-gold);"></div>
 </div>
 
-<section id="google-reviews">
-  <h2>Opinie z Google</h2>
-  {% if google_name %}
-    <h3>{{ google_name }}</h3>
-    <p>Adres: {{ google_address }}</p>
-    <p>Średnia ocena: {{ google_rating }}</p>
-    {% if google_reviews %}
-      <div class="reviews-list">
-        {% for r in google_reviews %}
-          <div class="review">
-            <img src="{{ r.profile_photo_url }}" alt="{{ r.author_name }}" width="40">
-            <strong>{{ r.author_name }}</strong> – ★{{ r.rating }}
-            <p>{{ r.text }}</p>
-            <small>{{ r.relative_time_description }}</small>
-          </div>
-        {% endfor %}
+<!-- Opinie Google -->
+<section id="google-reviews" class="container py-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="about-text p-4 rounded shadow-lg" data-aos="fade-up">
+
+        {% if LANGUAGE_CODE == 'pl' %}
+          <h2 class="mb-4 fw-bold" style="color: #A08A5D;">Opinie z Google</h2>
+        {% elif LANGUAGE_CODE == 'en' %}
+          <h2 class="mb-4 fw-bold" style="color: #A08A5D;">Google Reviews</h2>
+        {% elif LANGUAGE_CODE == 'es' %}
+          <h2 class="mb-4 fw-bold" style="color: #A08A5D;">Opiniones de Google</h2>
+        {% elif LANGUAGE_CODE == 'ru' %}
+          <h2 class="mb-4 fw-bold" style="color: #A08A5D;">Отзывы Google</h2>
+        {% elif LANGUAGE_CODE == 'uk' %}
+          <h2 class="mb-4 fw-bold" style="color: #A08A5D;">Відгуки Google</h2>
+        {% else %}
+          <h2 class="mb-4 fw-bold" style="color: #A08A5D;">Google Reviews</h2>
+        {% endif %}
+
+        {% if google_name %}
+
+          {% if LANGUAGE_CODE == 'pl' %}
+            <p class="text-light">Średnia ocena: {% for i in "12345" %}
+              {% if google_rating >= i %}
+                <span class="text-warning">★</span>
+              {% elif google_rating > i|add:"-1" %}
+                <span class="text-warning">☆</span>
+              {% else %}
+                <span class="text-secondary">★</span>
+              {% endif %}
+            {% endfor %}
+            ({{ google_rating }})</p>
+          {% elif LANGUAGE_CODE == 'en' %}
+            <p class="text-light">Average rating: {% for i in "12345" %}
+              {% if google_rating >= i %}
+                <span class="text-warning">★</span>
+              {% elif google_rating > i|add:"-1" %}
+                <span class="text-warning">☆</span>
+              {% else %}
+                <span class="text-secondary">★</span>
+              {% endif %}
+            {% endfor %}
+            ({{ google_rating }})</p>
+          {% elif LANGUAGE_CODE == 'es' %}
+            <p class="text-light">Calificación media: {% for i in "12345" %}
+              {% if google_rating >= i %}
+                <span class="text-warning">★</span>
+              {% elif google_rating > i|add:"-1" %}
+                <span class="text-warning">☆</span>
+              {% else %}
+                <span class="text-secondary">★</span>
+              {% endif %}
+            {% endfor %}
+            ({{ google_rating }})</p>
+          {% elif LANGUAGE_CODE == 'ru' %}
+            <p class="text-light">Средняя оценка: {% for i in "12345" %}
+              {% if google_rating >= i %}
+                <span class="text-warning">★</span>
+              {% elif google_rating > i|add:"-1" %}
+                <span class="text-warning">☆</span>
+              {% else %}
+                <span class="text-secondary">★</span>
+              {% endif %}
+            {% endfor %}
+            ({{ google_rating }})</p>
+          {% elif LANGUAGE_CODE == 'uk' %}
+            <p class="text-light">Середня оцінка: {% for i in "12345" %}
+              {% if google_rating >= i %}
+                <span class="text-warning">★</span>
+              {% elif google_rating > i|add:"-1" %}
+                <span class="text-warning">☆</span>
+              {% else %}
+                <span class="text-secondary">★</span>
+              {% endif %}
+            {% endfor %}
+            ({{ google_rating }})</p>
+          {% else %}
+            <p class="text-light">Average rating: {% for i in "12345" %}
+              {% if google_rating >= i %}
+                <span class="text-warning">★</span>
+              {% elif google_rating > i|add:"-1" %}
+                <span class="text-warning">☆</span>
+              {% else %}
+                <span class="text-secondary">★</span>
+              {% endif %}
+            {% endfor %}
+            ({{ google_rating }})</p>
+          {% endif %}
+
+          <!-- gwiazdki średniej oceny -->
+          <p class="text-light">
+
+          </p>
+
+          {% if google_reviews %}
+            <!-- Swiper -->
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                {% for r in google_reviews %}
+                  <div class="swiper-slide">
+                    <div class="review-card p-4 rounded shadow-lg">
+                      <div class="d-flex align-items-center mb-3">
+                        <img src="{{ r.profile_photo_url }}"
+                             alt="{{ r.author_name }}"
+                             width="55" height="55"
+                             class="rounded-circle me-3 border border-2 border-warning">
+                        <div>
+                          <strong class="text-gold">{{ r.author_name }}</strong><br>
+                          <span class="text-warning">
+                              {% for i in "12345" %}
+                                {% if r.rating >= i %}
+                                  ★
+                                {% elif r.rating > i|add:"-1" %}
+                                  ☆
+                                {% else %}
+                                  <span class="text-secondary">★</span>
+                                {% endif %}
+                              {% endfor %}
+                              ({{ r.rating }})
+                          </span>
+                        </div>
+                      </div>
+                      <p class="review-text">“{{ r.text }}”</p>
+                      <small class="text-muted">{{ r.relative_time_description }}</small>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="swiper-button-next text-gold"></div>
+              <div class="swiper-button-prev text-gold"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          {% else %}
+            {% if LANGUAGE_CODE == 'pl' %}
+              <p class="text-light">Brak dostępnych opinii.</p>
+            {% elif LANGUAGE_CODE == 'en' %}
+              <p class="text-light">No reviews available.</p>
+            {% elif LANGUAGE_CODE == 'es' %}
+              <p class="text-light">No hay opiniones disponibles.</p>
+            {% elif LANGUAGE_CODE == 'ru' %}
+              <p class="text-light">Нет доступных отзывов.</p>
+            {% elif LANGUAGE_CODE == 'uk' %}
+              <p class="text-light">Немає доступних відгуків.</p>
+            {% else %}
+              <p class="text-light">No reviews available.</p>
+            {% endif %}
+          {% endif %}
+        {% else %}
+          {% if LANGUAGE_CODE == 'pl' %}
+            <p class="text-light">Nie udało się pobrać danych Google.</p>
+          {% elif LANGUAGE_CODE == 'en' %}
+            <p class="text-light">Failed to fetch Google data.</p>
+          {% elif LANGUAGE_CODE == 'es' %}
+            <p class="text-light">No se pudieron obtener los datos de Google.</p>
+          {% elif LANGUAGE_CODE == 'ru' %}
+            <p class="text-light">Не удалось получить данные Google.</p>
+          {% elif LANGUAGE_CODE == 'uk' %}
+            <p class="text-light">Не вдалося отримати дані Google.</p>
+          {% else %}
+            <p class="text-light">Failed to fetch Google data.</p>
+          {% endif %}
+        {% endif %}
       </div>
-    {% else %}
-      <p>Brak dostępnych opinii.</p>
-    {% endif %}
-  {% else %}
-    <p>Nie udało się pobrać danych Google.</p>
-  {% endif %}
+    </div>
+  </div>
 </section>
+
+
+<!-- CDN Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    slidesPerView: 1,
+    spaceBetween: 20,
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1200: { slidesPerView: 3 }
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+
 
 
 <!-- CONTACT -->
@@ -815,7 +993,7 @@
             <div class="col-lg-6" data-aos="zoom-in">
                 <div class="ratio ratio-4x3 shadow rounded overflow-hidden h-100">
                     <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2442.5451878311937!2d17.022081815739315!3d51.11831737957124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fe9c062eb6e8f%3A0x204cd554169bdb71!2sPlac%20Solidarno%C5%9Bci%201%2C%2051-516%20Wroc%C5%82aw%2C%20Poland!5e0!3m2!1sen!2spl!4v1655193872665!5m2!1sen!2spl"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2504.9502006907237!2d17.031517712704762!3d51.109378971607605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fc3193c42bfef%3A0xf437e805fa1c284a!2sVisa%20Project!5e0!3m2!1spl!2spl!4v1756392618711!5m2!1spl!2spl"
                             style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade">
                     </iframe>

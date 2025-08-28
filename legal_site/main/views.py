@@ -28,21 +28,30 @@ def index(request):
     company = Firma.objects.first()
     links = SocialLink.objects.all()
     social_links = {link.name.lower(): link.url for link in links}
-    google_data = get_google_reviews()
+    google_data = get_google_reviews()  # zakładam, że zwraca dict
 
-    print(google_data)
-    return render(
-        request,
-        'main/index.html',
-        {
-            'services': services,
-            'employees': employees,
-            'company': company,
-            'social_links': social_links,
-            'isBlackListed': getattr(request, "is_blacklisted", False),
-            'service_classes': service_classes,
-        }
-    )
+    context = {
+        'services': services,
+        'employees': employees,
+        'company': company,
+        'social_links': social_links,
+        'isBlackListed': getattr(request, "is_blacklisted", False),
+        'service_classes': service_classes,
+        'google_data': google_data,
+    }
+
+    # jeżeli w google_data masz np.:
+    # {"name": "...", "address": "...", "rating": 4.5, "reviews": [...]}
+    if google_data:
+        context.update({
+            "google_name": google_data.get("name"),
+            "google_address": google_data.get("address"),
+            "google_rating": google_data.get("rating"),
+            "google_reviews": google_data.get("reviews"),
+        })
+
+    return render(request, 'main/index.html', context)
+
 
 
 def get_google_reviews():
