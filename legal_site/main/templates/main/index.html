@@ -67,7 +67,28 @@
     .gold-buttons-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      justify-content: center;
+      gap: 18px; /* odstęp między przyciskami */
+    }
+
+    .gold-buttons-container button {
+      flex: 1 1 45%; /* dwa przyciski w rzędzie */
+      max-width: 200px; /* opcjonalnie ograniczenie szerokości */
+    }
+
+    /* Tylko na mobilu */
+    @media (max-width: 768px) {
+      .gold-buttons-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        gap: 10px;
+      }
+
+      .gold-buttons-container button {
+        width: 100%;
+        max-width: 180px; /* dopasowanie szerokości */
+      }
     }
     .button-animated-gold {
       width: 190px;   /* szerokość */
@@ -752,7 +773,7 @@
               {% if google_rating >= i %}
                 <span class="text-warning">★</span>
               {% elif google_rating > i|add:"-1" %}
-                <span class="text-warning">☆</span>
+                <span class="text-warning">★</span>
               {% else %}
                 <span class="text-secondary">★</span>
               {% endif %}
@@ -763,7 +784,7 @@
               {% if google_rating >= i %}
                 <span class="text-warning">★</span>
               {% elif google_rating > i|add:"-1" %}
-                <span class="text-warning">☆</span>
+                <span class="text-warning">★</span>
               {% else %}
                 <span class="text-secondary">★</span>
               {% endif %}
@@ -774,7 +795,7 @@
               {% if google_rating >= i %}
                 <span class="text-warning">★</span>
               {% elif google_rating > i|add:"-1" %}
-                <span class="text-warning">☆</span>
+                <span class="text-warning">★</span>
               {% else %}
                 <span class="text-secondary">★</span>
               {% endif %}
@@ -785,7 +806,7 @@
               {% if google_rating >= i %}
                 <span class="text-warning">★</span>
               {% elif google_rating > i|add:"-1" %}
-                <span class="text-warning">☆</span>
+                <span class="text-warning">★</span>
               {% else %}
                 <span class="text-secondary">★</span>
               {% endif %}
@@ -796,7 +817,7 @@
               {% if google_rating >= i %}
                 <span class="text-warning">★</span>
               {% elif google_rating > i|add:"-1" %}
-                <span class="text-warning">☆</span>
+                <span class="text-warning">★</span>
               {% else %}
                 <span class="text-secondary">★</span>
               {% endif %}
@@ -807,7 +828,7 @@
               {% if google_rating >= i %}
                 <span class="text-warning">★</span>
               {% elif google_rating > i|add:"-1" %}
-                <span class="text-warning">☆</span>
+                <span class="text-warning">★</span>
               {% else %}
                 <span class="text-secondary">★</span>
               {% endif %}
@@ -839,7 +860,7 @@
                                 {% if r.rating >= i %}
                                   ★
                                 {% elif r.rating > i|add:"-1" %}
-                                  ☆
+                                  ★
                                 {% else %}
                                   <span class="text-secondary">★</span>
                                 {% endif %}
