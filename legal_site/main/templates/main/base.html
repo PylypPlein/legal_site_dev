@@ -359,10 +359,21 @@
             All rights reserved. © 2025 Visa Project.
           </div>
           <div class="d-flex align-items-center gap-3">
-            <a href="#" class="text-white"><i class="bi bi-send-fill fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-whatsapp fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-facebook fs-5"></i></a>
+            {% if social_links.instagram is not None %}
+            <a href="{{social_links.instagram}}" target="_blank" class="text-white text-decoration-none">
+              <i class="bi bi-instagram" style="font-size: 1.5rem;"></i>
+            </a>
+            {% endif %}
+            {% if social_links.telegram is not None %}
+            <a href="{{social_links.telegram}}" target="_blank" class="text-white text-decoration-none">
+              <i class="bi bi-telegram" style="font-size: 1.5rem;"></i>
+            </a>
+            {% endif %}
+            {% if social_links.facebook is not None %}
+            <a href="{{social_links.facebook}}" target="_blank" class="text-white text-decoration-none">
+              <i class="bi bi-facebook" style="font-size: 1.5rem;"></i>
+            </a>
+            {% endif %}
           </div>
           <div class="text-muted small text-end">
             Created with passion<br>
