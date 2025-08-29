@@ -97,6 +97,7 @@ from django.contrib import messages
 from django.urls import reverse
 
 def contact(request):
+
     SUBJECTS_CLIENT = {
         "ru": "Подтверждение записи на консультацию",
         "pl": "Potwierdzenie zapisu na konsultację",
@@ -104,10 +105,11 @@ def contact(request):
         "uk": "Підтвердження запису на консультацію",
     }
     if request.method == "POST":
+
         form = ContactRequestForm(request.POST)
         if form.is_valid():
             contact_instance = form.save()  # zapis do bazy
-
+            lang = getattr(request, "LANGUAGE_CODE", "en")
             # === Email do клієнта ===
             html_message_client = render_to_string(
                 'main/emails/confirmation.html',
