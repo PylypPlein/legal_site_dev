@@ -90,6 +90,65 @@ def privacy_policy(request):
 def about(request):
     return render(request, 'main/about.html')
 
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.urls import reverse
+
+def contact(request):
+    SUBJECTS_CLIENT = {
+        "ru": "Подтверждение записи на консультацию",
+        "pl": "Potwierdzenie zapisu na konsultację",
+        "en": "Consultation booking confirmation",
+        "uk": "Підтвердження запису на консультацію",
+    }
+    if request.method == "POST":
+        form = ContactRequestForm(request.POST)
+        if form.is_valid():
+            contact_instance = form.save()  # zapis do bazy
+
+            # === Email do клієнта ===
+            html_message_client = render_to_string(
+                'main/emails/confirmation.html',
+                {'contact': contact_instance, 'LANGUAGE_CODE': request.LANGUAGE_CODE}
+            )
+
+            email_client = EmailMessage(
+                subject=SUBJECTS_CLIENT.get(lang, SUBJECTS_CLIENT["en"]),
+                body=html_message_client,
+                from_email=None,  # używa DEFAULT_FROM_EMAIL
+                to=[contact_instance.email],
+            )
+            email_client.content_subtype = "html"
+            email_client.send(fail_silently=False)
+
+            # === Email do biura ===
+            html_message_admin = render_to_string(
+                'main/emails/notification.html',
+                {'contact': contact_instance, 'LANGUAGE_CODE': request.LANGUAGE_CODE}
+            )
+
+            email_admin = EmailMessage(
+                subject="Новая заявка на консультацию",
+                body=html_message_admin,
+                from_email=None,
+                to=["biuro@visaproject.pl"],
+            )
+            email_admin.content_subtype = "html"
+            email_admin.send(fail_silently=False)
+
+            messages.success(request, "Ваше сообщение отправлено и подтверждение выслано на email!")
+            return redirect(reverse('index'))
+        else:
+            messages.error(request, "Пожалуйста, исправьте ошибки в форме.")
+    else:
+        form = ContactRequestForm()
+
+    services = Service.objects.all()
+    return render(request, 'index.html', {'form': form, 'services': services})
+
+'''
 def contact(request):
     if request.method == "POST":
         form = ContactRequestForm(request.POST)
@@ -121,7 +180,7 @@ def contact(request):
     services = Service.objects.all()
     return render(request, 'index.html', {'form': form, 'services': services})
 
-'''
+
 def contact(request):
     if request.method == "POST":
         form = ContactRequestForm(request.POST)
