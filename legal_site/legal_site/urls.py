@@ -33,7 +33,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('fixCallAdm/', admin.site.urls),
+    path('xczd8h31bndoadpi21/', admin.site.urls),
 
     path('', include('main.urls')),  # ТОЛЬКО здесь допустимо использовать внутри i18n_patterns
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
