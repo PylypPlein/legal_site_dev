@@ -91,6 +91,7 @@
       }
     }
     .button-animated-gold {
+
       width: 190px;   /* szerokość */
       height: 60px;   /* wysokość */
       display: inline-flex;
@@ -106,8 +107,9 @@
       border-color: #A08A5D;
       padding: 10px 20px;
       text-decoration: none;
+      padding: var(--size-1) var(--size-2);
       transform: translateY(calc(var(--y, 0) * 1%)) scale(var(--scale));
-      transition: transform 0.1s;
+      transition: transform 0.2s;
       position: relative;
       cursor: pointer;
     }
@@ -231,18 +233,18 @@
             </div>
             <div class="mt-4">
                 <div class="gold-buttons-container">
-                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#services" class="button-animated-gold" >
                         <i class="bi bi-briefcase me-2"></i>Usługi
                     </a>
-                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#we_are" class="button-animated-gold" >
                         <i class="bi bi-people me-2"></i>Nasz zespół
                     </a>
-                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#contact" class="button-animated-gold" >
                         <i class="bi bi-envelope me-2"></i>Kontakt
                     </a>
                     {% if not isBlackListed %}
                     <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
+                            onclick="location.href='{% url 'job_list' %}'" >
                         <i class="bi bi-envelope me-2"></i>Oferty pracy
                     </button>
                     {% endif %}
@@ -275,18 +277,18 @@
             </div>
             <div class="mt-4">
                 <div class="gold-buttons-container">
-                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#services" class="button-animated-gold">
                         <i class="bi bi-briefcase me-2"></i>Services
                     </a>
-                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#we_are" class="button-animated-gold" >
                         <i class="bi bi-people me-2"></i>Our team
                     </a>
-                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#contact" class="button-animated-gold" >
                         <i class="bi bi-envelope me-2"></i>Contact
                     </a>
                     {% if not isBlackListed %}
                     <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
+                            onclick="location.href='{% url 'job_list' %}'" >
                         <i class="bi bi-envelope me-2"></i>Job offers
                     </button>
                     {% endif %}
@@ -318,18 +320,18 @@
             </div>
             <div class="mt-4">
                 <div class="gold-buttons-container">
-                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#services" class="button-animated-gold" >
                         <i class="bi bi-briefcase me-2"></i>Servicios
                     </a>
-                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#we_are" class="button-animated-gold" >
                         <i class="bi bi-people me-2"></i>Nuestro equipo
                     </a>
-                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#contact" class="button-animated-gold" >
                         <i class="bi bi-envelope me-2"></i>Contacto
                     </a>
                     {% if not isBlackListed %}
                     <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
+                            onclick="location.href='{% url 'job_list' %}'" >
                         <i class="bi bi-envelope me-2"></i>Ofertas de trabajo
                     </button>
                     {% endif %}
@@ -360,18 +362,18 @@
             </div>
             <div class="mt-4">
                 <div class="gold-buttons-container">
-                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#services" class="button-animated-gold" >
                         <i class="bi bi-briefcase me-2"></i>Услуги
                     </a>
-                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#we_are" class="button-animated-gold" >
                         <i class="bi bi-people me-2"></i>Штат
                     </a>
-                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#contact" class="button-animated-gold" >
                         <i class="bi bi-envelope me-2"></i>Контакт
                     </a>
                     {% if not isBlackListed %}
                     <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
+                            onclick="location.href='{% url 'job_list' %}'" >
                         <i class="bi bi-envelope me-2"></i>Вакансии
                     </button>
                     {% endif %}
@@ -405,18 +407,18 @@
             </div>
             <div class="mt-4">
                 <div class="gold-buttons-container">
-                    <a type="button" href="#services" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#services" class="button-animated-gold">
                         <i class="bi bi-briefcase me-2"></i>Послуги
                     </a>
-                    <a type="button" href="#we_are" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#we_are" class="button-animated-gold" >
                         <i class="bi bi-people me-2"></i>Штат
                     </a>
-                    <a type="button" href="#contact" class="button-animated-gold" data-aos="fade-up">
+                    <a type="button" href="#contact" class="button-animated-gold">
                         <i class="bi bi-envelope me-2"></i>Контакт
                     </a>
                     {% if not isBlackListed %}
                     <button type="button" class="button-animated-gold"
-                            onclick="location.href='{% url 'job_list' %}'" data-aos="fade-up">
+                            onclick="location.href='{% url 'job_list' %}'">
                         <i class="bi bi-envelope me-2"></i>Вакансії
                     </button>
                     {% endif %}
