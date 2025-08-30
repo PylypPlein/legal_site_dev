@@ -6,6 +6,11 @@ class ContactMessage(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "Contact form"
+        verbose_name_plural = "Contact forms"
+        ordering = ['name']
+
     def __str__(self):
         return f"Сообщение от {self.name}"
 
@@ -24,6 +29,11 @@ class ServiceClass(models.Model):
     description_ru = models.TextField("Opis klasy (RU)", blank=True, null=True)
     description_ua = models.TextField("Opis klasy (UA)", blank=True, null=True)
     description_es = models.TextField("Opis klasy (ES)", blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Service Category"
+        verbose_name_plural = "Services Categories"
+
 
     def __str__(self):
         return self.name_pl
@@ -51,6 +61,11 @@ class Service(models.Model):
     description_ua = models.TextField("Opis usługi (UA)")
     description_es = models.TextField("Opis usługi (ES)")
 
+    class Meta:
+        verbose_name = "Service"
+        verbose_name_plural = "Services"
+
+
     def __str__(self):
         return self.name_pl
 
@@ -66,6 +81,11 @@ class Employee(models.Model):
     description = models.TextField("Описание")
 
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Employee"
+        verbose_name_plural = "Employees"
+
 
     class Meta:
         verbose_name = "Pracownik"
@@ -87,6 +107,11 @@ class Firma(models.Model):
     email = models.EmailField(verbose_name="Adres e-mail")
     data_dodania = models.DateTimeField(auto_now_add=True, verbose_name="Data dodania")
 
+    class Meta:
+        verbose_name = "Company data"
+        verbose_name_plural = "Company data"
+
+
     def __str__(self):
         return self.nazwa_firmy
 
@@ -101,8 +126,8 @@ class SocialLink(models.Model):
     url = models.URLField("Посилання")
 
     class Meta:
-        verbose_name = "Соціальна мережа"
-        verbose_name_plural = "Соціальні мережі"
+        verbose_name = "Social network"
+        verbose_name_plural = "Social networks"
         ordering = ['name']
 
     def __str__(self):
@@ -177,8 +202,8 @@ class JobOffer(models.Model):
     status = models.CharField("Status", max_length=10, choices=STATUS_CHOICES, default='draft')
 
     class Meta:
-        verbose_name = "Oferta pracy"
-        verbose_name_plural = "Oferty pracy"
+        verbose_name = "Job offer"
+        verbose_name_plural = "Job offers"
         ordering = ['-published_at']
 
     def __str__(self):
@@ -191,6 +216,11 @@ class ContactRequest(models.Model):
     service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, verbose_name="Услуга")
     message = models.TextField("Сообщение", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Contact request"
+        verbose_name_plural = "Contact requests"
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"{self.name} - {self.service}"
