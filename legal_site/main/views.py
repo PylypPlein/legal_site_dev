@@ -1,25 +1,15 @@
-from django.shortcuts import render
-from .models import Service
-# Create your views here.
-from django.shortcuts import render, redirect
-from .forms import ContactRequestForm
 from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection, JobOffer, BlacklistedCountry,ServiceClass
-from ipware import get_client_ip
-# views.py
-from django.shortcuts import render, redirect
-from .forms import ContactRequestForm
-from .models import Service
-from django.urls import reverse
-from django.contrib import messages
 from django.conf import settings
 import requests
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.urls import reverse
 from .forms import ContactRequestForm
 from .models import Service
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.urls import reverse
+from django.core.cache import cache
+from django.conf import settings
 
 def index(request):
     service_classes = ServiceClass.objects.prefetch_related("services").all()
@@ -52,8 +42,37 @@ def index(request):
 
     return render(request, 'main/index.html', context)
 
+def get_google_reviews():
+    cached_data = cache.get("google_reviews")  # спроба взяти з кешу
+    if cached_data:
+        return cached_data
+
+    url = (
+        f"https://maps.googleapis.com/maps/api/place/details/json?"
+        f"place_id={settings.GOOGLE_MAPS_PLACE_ID}&"
+        f"fields=reviews,name,rating,formatted_address&"
+        f"key={settings.GOOGLE_MAPS_API}"
+    )
+
+    try:
+        response = requests.get(url)
+        data = response.json()
+        result = data.get("result", {})
+        google_data = {
+            "name": result.get("name"),
+            "address": result.get("formatted_address"),
+            "rating": result.get("rating"),
+            "reviews": result.get("reviews", []),
+        }
+        # зберігаємо в кеш на 24 години
+        cache.set("google_reviews", google_data, 60 * 60 * 24)
+        return google_data
+    except Exception as e:
+        print("Exception:", e)
+        return {"name": None, "address": None, "rating": None, "reviews": []}
 
 
+'''
 def get_google_reviews():
     url = (
         f"https://maps.googleapis.com/maps/api/place/details/json?"
@@ -80,7 +99,7 @@ def get_google_reviews():
         print("Exception:", e)
         return {"name": None, "address": None, "rating": None, "reviews": []}
 
-
+'''
 
 def privacy_policy(request):
     company = Firma.objects.first()
@@ -89,14 +108,6 @@ def privacy_policy(request):
 
 def about(request):
     return render(request, 'main/about.html')
-
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.urls import reverse
-
-from django.shortcuts import render
 
 def maintenance(request):
     company = Firma.objects.first()
