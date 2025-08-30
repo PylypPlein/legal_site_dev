@@ -96,6 +96,13 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
 
+from django.shortcuts import render
+
+def maintenance(request):
+    company = Firma.objects.first()
+    return render(request, 'main/maintenance.html', {'company': company})
+
+
 def contact(request):
 
     SUBJECTS_CLIENT = {
