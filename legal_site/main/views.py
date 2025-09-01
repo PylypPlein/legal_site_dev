@@ -153,7 +153,7 @@ def contact(request):
                 subject="Новая заявка на консультацию",
                 body=html_message_admin,
                 from_email=None,
-                to=["biuro@visaproject.pl"],
+                to=["contact@visaproject.pl"],
             )
             email_admin.content_subtype = "html"
             email_admin.send(fail_silently=False)
