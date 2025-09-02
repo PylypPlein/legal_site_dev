@@ -519,7 +519,18 @@
 
         <span class="d-block mb-4" style="width: 60px; height: 3px; background-color: #A08A5D;"></span>
         <div id="service-description" class="text-dark" style="min-height: 200px;">
-          {% trans "Оберіть послугу, щоб побачити опис." %}
+          {% if LANGUAGE_CODE == 'pl' %}
+              <p>{% trans "Wybierz usługę, aby zobaczyć opis." %}</p>
+            {% elif LANGUAGE_CODE == 'en' %}
+              <p>{% trans "Select a service to see the description." %}</p>
+            {% elif LANGUAGE_CODE == 'ru' %}
+              <p>{% trans "Выберите услугу, чтобы увидеть описание." %}</p>
+            {% elif LANGUAGE_CODE == 'uk' %}
+              <p>{% trans "Оберіть послугу, щоб побачити опис." %}</p>
+            {% else %}
+              <p>{% trans "Select a service to see the description." %}</p>
+            {% endif %}
+
         </div>
       </div>
 
