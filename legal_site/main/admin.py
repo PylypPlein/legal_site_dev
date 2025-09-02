@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Service, Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection
 from .models import JobOffer
-from .models import BlacklistedCountry, ContactRequest, Service
+from .models import BlacklistedCountry, ContactRequest, Service, JobApplication
 
 from django.contrib import admin
 from .models import ServiceClass, Service
@@ -69,7 +69,13 @@ class PrivacyPolicySubsectionAdmin(admin.ModelAdmin):
     list_display = ("__str__", "section")
     list_filter = ("section",)
 
-
+@admin.register(JobApplication)
+class JobApplicationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'phone', 'job', 'created_at')
+    list_filter = ('job', 'created_at')
+    search_fields = ('name', 'email', 'phone', 'message')
+    readonly_fields = ('created_at',)
+    ordering = ('-created_at',)
 
 @admin.register(JobOffer)
 class JobOfferAdmin(admin.ModelAdmin):
