@@ -297,14 +297,21 @@
         </div>
 
 
-        <div class="video-container">
+       <div class="video-container">
           <video
             id="promoVideo"
             src="{% static 'main/video/video.mp4' %}"
             autoplay muted playsinline loop>
             Ваш браузер не підтримує відтворення відео.
           </video>
+
+          <!-- Overlay з підказкою -->
+          <div class="video-overlay" id="videoOverlay">
+            <img src="{% static 'main/touch.png' %}" alt="Touch" class="finger-icon">
+            <span class="touch-text">TOUCH</span>
+          </div>
         </div>
+
 
 
     </div>
