@@ -1,15 +1,17 @@
 from .models import Employee, Firma, SocialLink, PrivacyPolicySection, PrivacyPolicySubsection, JobOffer, BlacklistedCountry,ServiceClass
-from django.conf import settings
 import requests
 from .forms import ContactRequestForm
 from .models import Service
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.urls import reverse
 from django.core.cache import cache
 from django.conf import settings
+
+from django.core.mail import EmailMessage
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from django.urls import reverse
+from django.template.loader import render_to_string
+from .models import JobOffer, JobApplication
+from .forms import JobApplicationForm
 
 def index_redirect(request):
     lang = get_language() or 'en'
@@ -169,6 +171,53 @@ def contact(request):
 
     services = Service.objects.all()
     return render(request, 'index.html', {'form': form, 'services': services})
+
+
+
+def apply_for_job(request, job_id):
+    job = get_object_or_404(JobOffer, id=job_id)
+
+    if request.method == 'POST':
+        form = JobApplicationForm(request.POST, request.FILES)
+        if form.is_valid():
+            application = form.save(commit=False)
+            application.job = job
+            application.save()
+
+            # Email кандидату
+            html_message = render_to_string('main/emails/job_application_confirmation.html', {
+                'application': application,
+                'LANGUAGE_CODE': request.LANGUAGE_CODE
+            })
+            email_client = EmailMessage(
+                subject="Подтверждение отклика на вакансию",
+                body=html_message,
+                to=[application.email]
+            )
+            email_client.content_subtype = "html"
+            email_client.send()
+
+            # Email в офис
+            html_message_admin = render_to_string('main/emails/job_application_notification.html', {
+                'application': application,
+                'LANGUAGE_CODE': request.LANGUAGE_CODE
+            })
+            email_admin = EmailMessage(
+                subject=f"Новый отклик на вакансию: {job.title_en}",
+                body=html_message_admin,
+                to=["contact@visaproject.pl"]
+            )
+            email_admin.content_subtype = "html"
+            email_admin.send()
+
+            messages.success(request, "Ваш отклик успешно отправлен!")
+            return redirect(reverse('index'))
+        else:
+            messages.error(request, "Проверьте форму, есть ошибки.")
+    else:
+        form = JobApplicationForm()
+
+    return render(request, 'apply_job.html', {'form': form, 'job': job})
 
 '''
 def contact(request):

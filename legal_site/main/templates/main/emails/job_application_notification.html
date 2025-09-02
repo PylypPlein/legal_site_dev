@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый отклик на вакансию</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            color: #0F0F0F;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            color: #A08A5D;
+        }
+        .content {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="header">Новый отклик на вакансию</h2>
+
+        <div class="content">
+            <p><strong>Вакансия:</strong> {{ application.job.title_ru }}</p>
+            <p><strong>Имя:</strong> {{ application.name }}</p>
+            <p><strong>Телефон:</strong> {{ application.phone }}</p>
+            <p><strong>Email:</strong> {{ application.email }}</p>
+            {% if application.resume %}
+                <p><strong>Резюме:</strong> <a href="{{ application.resume.url }}">Скачать</a></p>
+            {% endif %}
+            <p><strong>Сообщение:</strong> {{ application.message }}</p>
+            <p><strong>Дата отклика:</strong> {{ application.created_at }}</p>
+        </div>
+
+        <div class="footer">
+            &copy; 2025 Visa Project
+        </div>
+    </div>
+</body>
+</html>

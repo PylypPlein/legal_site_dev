@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% if LANGUAGE_CODE == 'ru' %}Подтверждение отклика на вакансию
+        {% elif LANGUAGE_CODE == 'pl' %}Potwierdzenie zgłoszenia na stanowisko
+        {% elif LANGUAGE_CODE == 'en' %}Job application confirmation
+        {% elif LANGUAGE_CODE == 'uk' %}Підтвердження відгуку на вакансію
+        {% else %}Job Application Confirmation
+        {% endif %}
+    </title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            color: #0F0F0F;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            color: #A08A5D;
+        }
+        .content {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="header">
+            {% if LANGUAGE_CODE == 'ru' %}Спасибо за ваш отклик
+            {% elif LANGUAGE_CODE == 'pl' %}Dziękujemy za zgłoszenie
+            {% elif LANGUAGE_CODE == 'en' %}Thank you for your application
+            {% elif LANGUAGE_CODE == 'uk' %}Дякуємо за ваш відгук
+            {% else %}Thank you
+            {% endif %}
+        </h2>
+
+        <div class="content">
+            {% if LANGUAGE_CODE == 'ru' %}
+                <p>Здравствуйте, {{ application.name }}!</p>
+                <p>Мы получили ваш отклик на вакансию: <strong>{{ application.job.title_ru }}</strong>. Наш менеджер свяжется с вами по телефону {{ application.phone }} или на email {{ application.email }}.</p>
+            {% elif LANGUAGE_CODE == 'pl' %}
+                <p>Witaj, {{ application.name }}!</p>
+                <p>Otrzymaliśmy Twoje zgłoszenie na stanowisko: <strong>{{ application.job.title_pl }}</strong>. Nasz konsultant skontaktuje się z Tobą.</p>
+            {% elif LANGUAGE_CODE == 'en' %}
+                <p>Hello, {{ application.name }}!</p>
+                <p>We have received your application for: <strong>{{ application.job.title_en }}</strong>. Our manager will contact you soon.</p>
+            {% elif LANGUAGE_CODE == 'uk' %}
+                <p>Привіт, {{ application.name }}!</p>
+                <p>Ми отримали ваш відгук на вакансію: <strong>{{ application.job.title_ua }}</strong>. Наш менеджер зв’яжеться з вами.</p>
+            {% endif %}
+
+            <p>{% if LANGUAGE_CODE == 'ru' %}Спасибо за обращение!{% elif LANGUAGE_CODE == 'pl' %}Dziękujemy za kontakt!{% elif LANGUAGE_CODE == 'en' %}Thank you for reaching out!{% elif LANGUAGE_CODE == 'uk' %}Дякуємо за звернення!{% endif %}</p>
+        </div>
+
+        <div class="footer">
+            &copy; 2025 Visa Project
+        </div>
+    </div>
+</body>
+</html>

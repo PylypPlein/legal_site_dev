@@ -73,11 +73,11 @@
                     {% endif %}
                     <p class="mb-3"><i class="bi bi-calendar-event me-1 text-light"></i><em>Dodano: {{ job.published_at|date:"Y-m-d" }}</em></p>
 
-                    <a href="#contactModal" data-bs-toggle="modal" class="btn btn-primary w-100">
+                    <a href="#applyJobModal{{ job.id }}" data-bs-toggle="modal" class="btn btn-primary w-100">
                         <i class="bi bi-envelope-fill me-1"></i>
-                        {% if LANGUAGE_CODE == 'pl' %} Skontaktuj się {% elif LANGUAGE_CODE == 'en' %} Contact us
-                        {% elif LANGUAGE_CODE == 'ru' %} Связаться {% elif LANGUAGE_CODE == 'uk' %} Зв’язатися
-                        {% else %} Связаться {% endif %}
+                        {% if LANGUAGE_CODE == 'pl' %} Aplikuj {% elif LANGUAGE_CODE == 'en' %} Apply
+                        {% elif LANGUAGE_CODE == 'ru' %} Откликнуться {% elif LANGUAGE_CODE == 'uk' %} Відгукнутися
+                        {% else %} Apply {% endif %}
                     </a>
                 </div>
             </div>
@@ -85,6 +85,61 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="applyJobModal{{ job.id }}" tabindex="-1" aria-labelledby="applyJobLabel{{ job.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 rounded-4 shadow-lg bg-dark-900 text-white">
+            <form method="post" action="{% url 'apply_for_job' job.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="modal-header rounded-top-4 custom-border border-bottom bg-black">
+                    <h5 class="modal-title fw-bold" id="applyJobLabel{{ job.id }}">
+                        {% if LANGUAGE_CODE == 'pl' %} Aplikuj na stanowisko
+                        {% elif LANGUAGE_CODE == 'en' %} Apply for this job
+                        {% elif LANGUAGE_CODE == 'ru' %} Отклик на вакансию
+                        {% elif LANGUAGE_CODE == 'uk' %} Відгук на вакансію
+                        {% else %} Apply
+                        {% endif %}
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body py-4 px-4">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label for="name{{ job.id }}" class="form-label fw-semibold">{% trans "Имя" %}</label>
+                            <input type="text" class="form-control text-white bg-dark-800" id="name{{ job.id }}" name="name" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="email{{ job.id }}" class="form-label fw-semibold">{% trans "Email" %}</label>
+                            <input type="email" class="form-control text-white bg-dark-800" id="email{{ job.id }}" name="email" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="phone{{ job.id }}" class="form-label fw-semibold">{% trans "Телефон" %}</label>
+                            <input type="tel" class="form-control text-white bg-dark-800" id="phone{{ job.id }}" name="phone" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="resume{{ job.id }}" class="form-label fw-semibold">{% trans "Резюме (PDF/DOC)" %}</label>
+                            <input type="file" class="form-control text-white bg-dark-800" id="resume{{ job.id }}" name="resume">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="message{{ job.id }}" class="form-label fw-semibold">{% trans "Сообщение" %}</label>
+                            <textarea class="form-control text-white bg-dark-800" id="message{{ job.id }}" name="message" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer bg-black border-top custom-border">
+                    <button type="button" class="btn custom-gold-outline" data-bs-dismiss="modal">{% trans "Отмена" %}</button>
+                    <button type="submit" class="btn custom-gold fw-bold">{% trans "Отправить" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 

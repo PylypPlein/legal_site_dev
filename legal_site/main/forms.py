@@ -2,7 +2,7 @@ from django import forms
 from .models import ContactMessage
 
 from .models import ContactRequest, Service
-
+from .models import JobApplication
 class ContactRequestForm(forms.ModelForm):
     class Meta:
         model = ContactRequest
@@ -13,4 +13,14 @@ class ContactRequestForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control text-white bg-dark-800 custom-border', 'required': True}),
             'service': forms.Select(attrs={'class': 'form-select text-white bg-dark-800 custom-border', 'required': True}),
             'message': forms.Textarea(attrs={'class': 'form-control text-white bg-dark-800 custom-border', 'rows': 4, 'style': 'resize: none;'}),
+        }
+
+
+
+class JobApplicationForm(forms.ModelForm):
+    class Meta:
+        model = JobApplication
+        fields = ['name', 'email', 'phone', 'resume', 'message']
+        widgets = {
+            'message': forms.Textarea(attrs={'rows': 4}),
         }

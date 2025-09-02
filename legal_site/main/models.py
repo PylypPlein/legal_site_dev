@@ -225,6 +225,21 @@ class ContactRequest(models.Model):
     def __str__(self):
         return f"{self.name} - {self.service}"
 
+from django.db import models
+
+class JobApplication(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    message = models.TextField(blank=True, null=True)
+    resume = models.FileField(upload_to='resumes/', blank=True, null=True)
+    job = models.ForeignKey('JobOffer', on_delete=models.CASCADE, related_name='applications')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.job.title_en}"
+
+
 class BlacklistedCountry(models.Model):
     name = models.CharField(max_length=100, unique=True)
 

@@ -10,4 +10,5 @@ urlpatterns = [
     path('policy/',views.privacy_policy, name='policy'),
     path('jobs/', views.job_list, name='job_list'),
     path('maintenance/', views.maintenance, name='maintenance'),
+    path('jobs/<int:job_id>/apply/', views.apply_for_job, name='apply_for_job'),
 ]
