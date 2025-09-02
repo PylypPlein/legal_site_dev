@@ -296,13 +296,17 @@
             </div>
         </div>
 
-        <div class="col-lg-4" data-aos="fade-left">
-            <video class="video-small" autoplay muted playsinline loop>
-                <source src="{% static 'main/video/video.mp4' %}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
 
+        <div class="video-container">
+          <video
+            id="promoVideo"
+            src="{% static 'main/video/video.mp4' %}"
+            autoplay muted playsinline loop>
+            Ваш браузер не підтримує відтворення відео.
+          </video>
         </div>
+
+
     </div>
 </section>
 
@@ -940,6 +944,24 @@
       prevEl: ".swiper-button-prev",
     },
   });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const video = document.getElementById('promoVideo');
+  const originalContainer = video.parentElement;
+
+  video.addEventListener('click', function() {
+    if (window.innerWidth <= 768) { // лише для мобільних
+      if (video.classList.contains('video-fullscreen')) {
+        video.classList.remove('video-fullscreen');
+        originalContainer.appendChild(video); // повертаємо назад
+      } else {
+        video.classList.add('video-fullscreen');
+        document.body.appendChild(video); // fullscreen на весь екран
+      }
+    }
+  });
+});
 </script>
 
 

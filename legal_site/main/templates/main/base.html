@@ -184,12 +184,35 @@
       overflow: hidden;
       border-right: 4px solid #A08A5D;
     }
+    /* 📱 Для телефонів */
     @media (max-width: 768px) {
-      .video-small {
-        width: 100%;  /* займає всю ширину контейнера */
-        max-height: 650px; /* можна обмежити висоту */
-        object-fit: cover; /* щоб відео добре вписувалося */
-        margin-top: 20px;  /* відступ зверху */
+      .video-container {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 90px;       /* маленьке відео */
+        height: auto;
+        z-index: 9999;
+        overflow: visible;
+      }
+
+      .video-container video {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .video-fullscreen {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        object-fit: cover;
+        z-index: 10000 !important;
+        border-radius: 0 !important;
       }
     }
     .about-text {
