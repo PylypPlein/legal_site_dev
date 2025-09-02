@@ -251,7 +251,7 @@
                 </div>
             </div>
         </div>
-        <div class="video-container col-lg-3">
+        <div class="video-container col-lg-4" data-aos="fade-left">
           <video
             id="promoVideo"
             src="{% static 'main/video/video.mp4' %}" class="video-small"
@@ -262,7 +262,7 @@
           <!-- Overlay з підказкою -->
           <div class="video-overlay" id="videoOverlay">
             <img src="{% static 'main/touch.png' %}" alt="Touch" class="finger-icon">
-            <span class="touch-text">TOUCH</span>
+
           </div>
         </div>
     </div>
@@ -303,7 +303,7 @@
         </div>
 
 
-       <div class="video-container col-lg-4">
+       <div class="video-container col-lg-4" data-aos="fade-left">
           <video
             id="promoVideo"
             src="{% static 'main/video/video.mp4' %}" class="video-small"
@@ -314,7 +314,7 @@
           <!-- Overlay з підказкою -->
           <div class="video-overlay" id="videoOverlay">
             <img src="{% static 'main/touch.png' %}" alt="Touch" class="finger-icon">
-            <span class="touch-text">TOUCH</span>
+
           </div>
         </div>
 
@@ -356,7 +356,7 @@
             </div>
         </div>
 
-        <div class="video-container col-lg-4">
+        <div class="video-container col-lg-4" data-aos="fade-left">
           <video
             id="promoVideo"
             src="{% static 'main/video/video.mp4' %}" class="video-small"
@@ -367,7 +367,7 @@
           <!-- Overlay з підказкою -->
           <div class="video-overlay" id="videoOverlay">
             <img src="{% static 'main/touch.png' %}" alt="Touch" class="finger-icon">
-            <span class="touch-text">TOUCH</span>
+
           </div>
         </div>
     </div>
@@ -406,7 +406,7 @@
             </div>
 
         </div>
-        <div class="video-container col-lg-4">
+        <div class="video-container col-lg-4" data-aos="fade-left">
           <video
             id="promoVideo"
             src="{% static 'main/video/video.mp4' %}" class="video-small"
@@ -417,7 +417,7 @@
           <!-- Overlay з підказкою -->
           <div class="video-overlay" id="videoOverlay">
             <img src="{% static 'main/touch.png' %}" alt="Touch" class="finger-icon">
-            <span class="touch-text">TOUCH</span>
+
           </div>
         </div>
     </div>
@@ -457,7 +457,7 @@
                 </div>
             </div>
         </div>
-        <div class="video-container col-lg-4">
+        <div class="video-container col-lg-4" data-aos="fade-left">
           <video
             id="promoVideo"
             src="{% static 'main/video/video.mp4' %}" class="video-small"
@@ -468,7 +468,7 @@
           <!-- Overlay з підказкою -->
           <div class="video-overlay" id="videoOverlay">
             <img src="{% static 'main/touch.png' %}" alt="Touch" class="finger-icon">
-            <span class="touch-text">TOUCH</span>
+
           </div>
         </div>
     </div>
@@ -998,17 +998,28 @@ document.addEventListener('DOMContentLoaded', function() {
   const originalContainer = video.parentElement;
 
   video.addEventListener('click', function() {
-    if (window.innerWidth <= 768) { // лише для мобільних
+    if (window.innerWidth <= 768) { // мобільні
       if (video.classList.contains('video-fullscreen')) {
-        video.classList.remove('video-fullscreen');
-        originalContainer.appendChild(video); // повертаємо назад
+        // плавне згортання
+        video.style.opacity = 0;
+        setTimeout(() => {
+          video.classList.remove('video-fullscreen');
+          originalContainer.appendChild(video);
+          video.style.opacity = 1; // повертаємо видимість
+        }, 500); // час збігається з transition
       } else {
+        // плавне розгортання
         video.classList.add('video-fullscreen');
-        document.body.appendChild(video); // fullscreen на весь екран
+        document.body.appendChild(video);
+        video.style.opacity = 0;
+        setTimeout(() => {
+          video.style.opacity = 1;
+        }, 50); // невелика затримка для запуску transition
       }
     }
   });
 });
+
 </script>
 
 
