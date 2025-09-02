@@ -11,6 +11,10 @@ from django.urls import reverse
 from django.core.cache import cache
 from django.conf import settings
 
+def index_redirect(request):
+    lang = get_language() or 'en'
+    return redirect(f'/{lang}/')
+
 def index(request):
     service_classes = ServiceClass.objects.prefetch_related("services").all()
     services = Service.objects.all()
@@ -18,7 +22,7 @@ def index(request):
     company = Firma.objects.first()
     links = SocialLink.objects.all()
     social_links = {link.name.lower(): link.url for link in links}
-    google_data = get_google_reviews()  # zakładam, że zwraca dict
+    google_data = get_google_reviews()
 
     context = {
         'services': services,
@@ -30,8 +34,6 @@ def index(request):
         'google_data': google_data,
     }
 
-    # jeżeli w google_data masz np.:
-    # {"name": "...", "address": "...", "rating": 4.5, "reviews": [...]}
     if google_data:
         context.update({
             "google_name": google_data.get("name"),
