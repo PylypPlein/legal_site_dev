@@ -102,9 +102,11 @@ class Firma(models.Model):
     regon = models.CharField(max_length=9, blank=True, null=True, verbose_name="REGON")
     miasto = models.CharField(max_length=100, verbose_name="Miasto")
     adres = models.CharField(max_length=255, verbose_name="Adres")
+    corespondential_adres = models.CharField(max_length=255,verbose_name="Adres korespondencyjny")
     telefon_administracja = models.CharField(max_length=15, blank=True, null=True, verbose_name="Telefon administracja")
     telefon_legalizacja = models.CharField(max_length=15, blank=True, null=True, verbose_name="Telefon legalizacja")
     email = models.EmailField(verbose_name="Adres e-mail")
+    second_email = models.EmailField(verbose_name="Drugi Adres e-mail")
     data_dodania = models.DateTimeField(auto_now_add=True, verbose_name="Data dodania")
 
     class Meta:
