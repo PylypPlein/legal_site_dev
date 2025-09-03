@@ -1082,7 +1082,17 @@ document.addEventListener('DOMContentLoaded', function() {
                             <i class="bi bi-envelope-fill fs-3 me-3" style="color: white;"></i>
                             <div>
                                 <h5 class="mb-1">{{company.email}}</h5>
-                                <p class="mb-0">{% trans "Email" %}</p>
+                                <p class="mb-0">{% trans "Email" %} (EN/ES/RU)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" data-aos="fade-left">
+                        <div class="d-flex align-items-start p-4 rounded shadow h-100 about-text"
+                             style="cursor: pointer; border-radius: 3%; border-left: 4px solid #A08A5D;">
+                            <i class="bi bi-envelope-fill fs-3 me-3" style="color: white;"></i>
+                            <div>
+                                <h5 class="mb-1">{{company.second_email}}</h5>
+                                <p class="mb-0">{% trans "Email" %} (UA)</p>
                             </div>
                         </div>
                     </div>
